@@ -4,6 +4,10 @@ class Project{
         this.nome = nome;
         this.tasks = tasks;
     }
+
+    deleteTask(taskIndex){
+        this.tasks.splice(taskIndex, 1);
+    }
 }
 
 const projects = [];
