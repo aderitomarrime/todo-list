@@ -14,11 +14,25 @@ projects[1].tasks.push(new Task(1, "Cardio", "30 min per day", "31/12/2026", "Me
 
 projects[1].tasks.push(new Task(2, "Arms", "30 min per week", "31/12/2026", "Medium", false));
 
+//show 
 console.log(projects);
 console.log(projects[0].tasks);
 console.log(projects[1].tasks);
 
+// change done status
 projects[1].tasks[0].toggleDoneStatus();
 projects[1].tasks[1].toggleDoneStatus();
 projects[1].tasks[2].toggleDoneStatus();
-console.log(projects[1].tasks);
+
+//show
+console.log(projects[1].tasks[0]);
+
+//update task
+let title, description, dueDate, priority;
+title = "Subscribe now";
+description = "It helps a lot";
+console.log(title);
+projects[1].tasks[0].update(title,description, dueDate, priority);
+
+//show
+console.log(projects[1].tasks[0]);
