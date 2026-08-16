@@ -1,5 +1,6 @@
 class Project{
     constructor(arrayIndex, nome, tasks){
+        this.id = crypto.randomUUID();
         this.arrayIndex = arrayIndex;
         this.nome = nome;
         this.tasks = tasks;
@@ -12,4 +13,8 @@ class Project{
 
 const projects = [];
 
-export {Project, projects};
+function deleteProject(projectIndex) {
+    projects.splice(projectIndex, 1);
+}
+
+export {Project, projects, deleteProject};
