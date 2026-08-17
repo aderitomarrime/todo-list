@@ -1,18 +1,18 @@
 import {Task} from "./task.js";
 import {Project, projects, deleteProject, findProjectIndex} from "./project.js";
 
-projects.push(new Project(0, "default", [new Task(0, "Code", "Code everyday", "31/12/2026", "Hight", false)]));
+projects.push(new Project("default", [new Task(0, "Code", "Code everyday", "31/12/2026", "Hight", false)]));
 
-projects[0].tasks.push(new Task(1, "YouTube", "Make Videos", "31/12/2026", "Hight", false));
+projects[0].tasks.push(new Task("YouTube", "Make Videos", "31/12/2026", "Hight", false));
 
-projects[0].tasks.push(new Task(2, "YouTube", "Subscribe", "31/12/2026", "Hight", false));
+projects[0].tasks.push(new Task("YouTube", "Subscribe", "31/12/2026", "Hight", false));
 
 // Project 2
-projects.push(new Project(1, "gym", [new Task(0, "Push-ups", "Do it everyday", "31/12/2026", "Hight", false)]));
+projects.push(new Project("gym", [new Task(0, "Push-ups", "Do it everyday", "31/12/2026", "Hight", false)]));
 
-projects[1].tasks.push(new Task(1, "Cardio", "30 min per day", "31/12/2026", "Medium", false));
+projects[1].tasks.push(new Task("Cardio", "30 min per day", "31/12/2026", "Medium", false));
 
-projects[1].tasks.push(new Task(2, "Arms", "30 min per week", "31/12/2026", "Medium", false));
+projects[1].tasks.push(new Task("Arms", "30 min per week", "31/12/2026", "Medium", false));
 
 //show 
 // console.log(projects);
@@ -61,3 +61,6 @@ projects[1].tasks.push(new Task(2, "Arms", "30 min per week", "31/12/2026", "Med
 // let id = projects[1].id;
 // console.log(findProjectIndex(id));
 // console.log(projects[1].arrayIndex);
+
+// console.log(projects[1].tasks);
+console.log(projects[1]);
