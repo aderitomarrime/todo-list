@@ -1,5 +1,5 @@
 import {Task} from "./task.js";
-import {Project, projects, deleteProject} from "./project.js";
+import {Project, projects, deleteProject, findProjectIndex} from "./project.js";
 
 projects.push(new Project(0, "default", [new Task(0, "Code", "Code everyday", "31/12/2026", "Hight", false)]));
 
@@ -38,12 +38,26 @@ projects[1].tasks.push(new Task(2, "Arms", "30 min per week", "31/12/2026", "Med
 // console.log(projects[1].tasks[0]);
 
 //delete task
-// projects[1].deleteTask(0);
+// console.log(projects[1].tasks);
+// projects[1].deleteTask(projects[1].findTaskIndex(projects[1].tasks[0].id));
+// console.log(projects[1].tasks);
 
 //show
 // console.log(projects[1].tasks[0]);
 
-console.log(projects);
-deleteProject(0);
-console.log(projects);
+// console.log(projects);
+// deleteProject(findProjectIndex(projects[1].id));
+// console.log(projects);
 
+
+// console.log(projects[0].tasks);
+// let id = projects[0].tasks[1].id;
+// console.log(projects[0].tasks[0].id);
+
+
+// let id = projects[1].id;
+// console.log(findProjectIndex(id));
+
+// let id = projects[1].id;
+// console.log(findProjectIndex(id));
+// console.log(projects[1].arrayIndex);
