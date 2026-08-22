@@ -17,6 +17,7 @@ projects[1].tasks.push(new Task("Arms", "30 min per week", "31/12/2026", "Medium
 
 const DomManipulationObject = new DomManipulation();
 DomManipulationObject.createEssentials();
+DomManipulationObject.createProjects(projects);
 
 //show 
 // console.log(projects);
@@ -67,4 +68,4 @@ DomManipulationObject.createEssentials();
 // console.log(projects[1].arrayIndex);
 
 // console.log(projects[1].tasks);
-console.log(projects[1]);
+// console.log(projects[1]);

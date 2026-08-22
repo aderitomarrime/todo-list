@@ -1,7 +1,7 @@
 class Project{
-    constructor(nome, tasks){
+    constructor(name, tasks){
         this.id = crypto.randomUUID();
-        this.nome = nome;
+        this.name = name;
         this.tasks = tasks;
     }
 
