@@ -41,6 +41,35 @@ class DomManipulation{
         })
     }
 
+    listTasks(projectIndex, arrayOfProjects){
+        arrayOfProjects[projectIndex].tasks.forEach((task)=>{
+            const taskContainer = document.createElement("div");
+            const title = document.createElement("h1");
+            const description = document.createElement("p");
+            const dueDate = document.createElement("p");
+            const priority = document.createElement("p");
+            const done = document.createElement("input");
+
+            done.setAttribute("type", "checkbox");
+
+            title.textContent = task.title;
+            description.textContent = task.description;
+            dueDate.textContent = task.dueDate;
+            priority.textContent = task.priority;
+
+            if(task.done) {
+                done.checked = true;
+            }
+
+            this.myMain.appendChild(taskContainer);
+            taskContainer.appendChild(title);
+            taskContainer.appendChild(description);
+            taskContainer.appendChild(dueDate);
+            taskContainer.appendChild(priority);
+            taskContainer.appendChild(done);
+        })
+    }
+
 }
 
 export {DomManipulation};
