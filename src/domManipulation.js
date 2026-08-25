@@ -1,3 +1,5 @@
+import { findProjectIndex, projects } from "./project.js";
+
 class DomManipulation{
 
     body = document.querySelector("body");
@@ -36,12 +38,17 @@ class DomManipulation{
         arrayOfProjects.forEach((project)=>{
             const myProject = document.createElement("li");
             myProject.textContent = project.name;
-            myProject.classList.add(`${project.id}`);
+            myProject.setAttribute("id", `${project.id}`);
             this.projectList.appendChild(myProject);
+            
+            myProject.addEventListener('click', (event)=> {
+                this.listTasks(findProjectIndex(event.target.id), projects);
+            })
         })
     }
 
     listTasks(projectIndex, arrayOfProjects){
+        this.myMain.innerHTML = '';
         arrayOfProjects[projectIndex].tasks.forEach((task)=>{
             const taskContainer = document.createElement("div");
             const title = document.createElement("h1");
