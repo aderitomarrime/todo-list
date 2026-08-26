@@ -54,7 +54,7 @@ class DomManipulation{
         arrayOfProjects[projectIndex].tasks.forEach((task)=>{
             const taskContainer = document.createElement("div");
             const eye = document.createElement("img");
-            const trash = document.createElement("div");
+            const trash = document.createElement("img");
             const title = document.createElement("h1");
             const description = document.createElement("p");
             const dueDate = document.createElement("p");
@@ -69,7 +69,7 @@ class DomManipulation{
             dueDate.textContent = task.dueDate;
             priority.textContent = task.priority;
             eye.src = `${eyeSvg}`;
-            trash.innerHTML = `${trashSvg}`;
+            trash.src = `${trashSvg}`;
 
             if(task.done) {
                 done.checked = true;
