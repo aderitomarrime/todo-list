@@ -9,7 +9,7 @@ projects[0].tasks.push(new Task("YouTube", "Make Videos", "31/12/2026", "Hight",
 projects[0].tasks.push(new Task("YouTube", "Subscribe", "31/12/2026", "Hight", true));
 
 // Project 2
-projects.push(new Project("gym", [new Task(0, "Push-ups", "Do it everyday", "31/12/2026", "Hight", false)]));
+projects.push(new Project("gym", [new Task("Push-ups", "Do it everyday", "31/12/2026", "Hight", false)]));
 
 projects[1].tasks.push(new Task("Cardio", "30 min per day", "31/12/2026", "Medium", false));
 

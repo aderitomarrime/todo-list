@@ -1,4 +1,4 @@
-import { findProjectIndex, projects } from "./project.js";
+import { findProjectIndex, projects} from "./project.js";
 
 class DomManipulation{
 
@@ -58,6 +58,7 @@ class DomManipulation{
             const done = document.createElement("input");
 
             done.setAttribute("type", "checkbox");
+            done.setAttribute("id", `${task.id}`);
 
             title.textContent = task.title;
             description.textContent = task.description;
@@ -67,6 +68,11 @@ class DomManipulation{
             if(task.done) {
                 done.checked = true;
             }
+
+            done.addEventListener("click", (event)=>{
+                const taskIndex = arrayOfProjects[projectIndex].findTaskIndex(event.target.id);
+                arrayOfProjects[projectIndex].tasks[taskIndex].toggleDoneStatus();
+            })
 
             this.myMain.appendChild(taskContainer);
             taskContainer.appendChild(title);
