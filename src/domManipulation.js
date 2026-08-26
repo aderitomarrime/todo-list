@@ -1,4 +1,6 @@
 import { findProjectIndex, projects} from "./project.js";
+import eyeSvg from "./svg/eye.svg";
+import trashSvg from "./svg/trash.svg";
 
 class DomManipulation{
 
@@ -51,6 +53,8 @@ class DomManipulation{
         this.myMain.innerHTML = '';
         arrayOfProjects[projectIndex].tasks.forEach((task)=>{
             const taskContainer = document.createElement("div");
+            const eye = document.createElement("img");
+            const trash = document.createElement("div");
             const title = document.createElement("h1");
             const description = document.createElement("p");
             const dueDate = document.createElement("p");
@@ -64,6 +68,8 @@ class DomManipulation{
             description.textContent = task.description;
             dueDate.textContent = task.dueDate;
             priority.textContent = task.priority;
+            eye.src = `${eyeSvg}`;
+            trash.innerHTML = `${trashSvg}`;
 
             if(task.done) {
                 done.checked = true;
@@ -80,6 +86,8 @@ class DomManipulation{
             taskContainer.appendChild(dueDate);
             taskContainer.appendChild(priority);
             taskContainer.appendChild(done);
+            taskContainer.appendChild(eye);
+            taskContainer.appendChild(trash);
         })
     }
 
