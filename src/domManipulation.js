@@ -63,6 +63,7 @@ class DomManipulation{
 
             done.setAttribute("type", "checkbox");
             done.setAttribute("id", `${task.id}`);
+            trash.setAttribute("id", `${task.id}`);
 
             title.textContent = task.title;
             description.textContent = task.description;
@@ -78,6 +79,12 @@ class DomManipulation{
             done.addEventListener("click", (event)=>{
                 const taskIndex = arrayOfProjects[projectIndex].findTaskIndex(event.target.id);
                 arrayOfProjects[projectIndex].tasks[taskIndex].toggleDoneStatus();
+            })
+
+            trash.addEventListener("click", (event)=>{
+                const taskIndex = arrayOfProjects[projectIndex].findTaskIndex(event.target.id);
+                arrayOfProjects[projectIndex].deleteTask(taskIndex);
+                taskContainer.remove();
             })
 
             this.myMain.appendChild(taskContainer);
