@@ -1,6 +1,7 @@
 import { findProjectIndex, projects} from "./project.js";
 import eyeSvg from "./svg/eye.svg";
 import trashSvg from "./svg/trash.svg";
+import pencilSvg from "./svg/pencil.svg";
 
 class DomManipulation{
 
@@ -55,6 +56,7 @@ class DomManipulation{
             const taskContainer = document.createElement("div");
             const eye = document.createElement("img");
             const trash = document.createElement("img");
+            const pencil = document.createElement("img");
             const title = document.createElement("h1");
             const description = document.createElement("p");
             const dueDate = document.createElement("p");
@@ -71,6 +73,7 @@ class DomManipulation{
             priority.textContent = task.priority;
             eye.src = `${eyeSvg}`;
             trash.src = `${trashSvg}`;
+            pencil.src = `${pencilSvg}`;
 
             if(task.done) {
                 done.checked = true;
@@ -128,6 +131,7 @@ class DomManipulation{
             taskContainer.appendChild(priority);
             taskContainer.appendChild(done);
             taskContainer.appendChild(eye);
+            taskContainer.appendChild(pencil);
             taskContainer.appendChild(trash);
         })
     }
