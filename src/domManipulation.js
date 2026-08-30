@@ -81,6 +81,40 @@ class DomManipulation{
                 arrayOfProjects[projectIndex].tasks[taskIndex].toggleDoneStatus();
             })
 
+            eye.addEventListener("click", ()=> {
+                const infoModal = document.createElement("dialog");
+                const closeInfoModal = document.createElement("button");
+
+                const titleModal = title.cloneNode(true);
+                const descriptionModal = description.cloneNode(true);
+                const dueDateModal = dueDate.cloneNode(true);
+                const priorityModal = priority.cloneNode(true);
+                const doneModal = document.createElement("p");
+
+                doneModal.textContent = "Done: "+ `${task.done ? "Yes": "No"}`;
+                descriptionModal.textContent =  `Description: ${task.description}`;
+                dueDateModal.textContent = `Due Date: ${task.dueDate}`;
+                priorityModal.textContent = `Priority: ${task.priority}`;
+
+                closeInfoModal.textContent = "X"
+
+                infoModal.setAttribute("closedby", "any");
+                infoModal.setAttribute("id", "infoModal");
+
+                this.body.appendChild(infoModal);
+                infoModal.appendChild(titleModal);
+                infoModal.appendChild(descriptionModal);
+                infoModal.appendChild(dueDateModal);
+                infoModal.appendChild(priorityModal);
+                infoModal.appendChild(doneModal);
+                infoModal.appendChild(closeInfoModal);
+                infoModal.showModal();
+
+                closeInfoModal.addEventListener("click", ()=>{
+                    infoModal.close();
+                })
+            })
+
             trash.addEventListener("click", (event)=>{
                 const taskIndex = arrayOfProjects[projectIndex].findTaskIndex(event.target.id);
                 arrayOfProjects[projectIndex].deleteTask(taskIndex);
