@@ -129,17 +129,71 @@ class DomManipulation{
                 const editForm = document.createElement("form");
                 const editTitle = document.createElement("h1");
                 const editParagraph = document.createElement("p");
+                const editTitleLabel = document.createElement("label");
+                const editTitleinput = document.createElement("input");
+                const editDescriptionLabel = document.createElement("label");
+                const editDescriptioninput = document.createElement("input");
+                const editDueDateLabel = document.createElement("label");
+                const editDueDateinput = document.createElement("input");
+                const editPriorityLabel = document.createElement("label");
+                const editPrioritySelect = document.createElement("select");
+                const editPriorityoption0 = document.createElement("option");
+                const editPriorityoption1 = document.createElement("option");
+                const editPriorityoption2 = document.createElement("option");
+                const editPriorityoption3 = document.createElement("option");
 
                 editTitle.textContent = "Update Details";
                 editParagraph.textContent = "Blank fields will not be updated";
+                editTitleLabel.textContent = "Title";
+                editDescriptionLabel.textContent = "Description";
+                editDueDateLabel.textContent = "Due date";
+                editPriorityLabel.textContent = "Priority";
+                editPriorityoption0.textContent = "--Select Priority--";
+                editPriorityoption1.textContent = "High";
+                editPriorityoption2.textContent = "Medium";
+                editPriorityoption3.textContent = "Low";
 
                 editModal.setAttribute("closedby", "any");
                 editModal.setAttribute("id", "editModal");
+
+                editTitleLabel.setAttribute("for", "title");
+                editTitleinput.setAttribute("type", "text");
+                editTitleinput.setAttribute("name", "title");
+                editTitleinput.setAttribute("id", "title");
+
+                editDescriptionLabel.setAttribute("for", "description");
+                editDescriptioninput.setAttribute("type", "text");
+                editDescriptioninput.setAttribute("name", "description");
+                editDescriptioninput.setAttribute("id", "description");
+
+                editDueDateLabel.setAttribute("for", "duedate");
+                editDueDateinput.setAttribute("type", "date");
+                editDueDateinput.setAttribute("name", "duedate");
+                editDueDateinput.setAttribute("id", "duedate");
+
+                editPriorityLabel.setAttribute("for", "priority");
+                editPrioritySelect.setAttribute("id", "priority");
+                editPriorityoption0.setAttribute("value", "0");
+                editPriorityoption1.setAttribute("value", "High");
+                editPriorityoption2.setAttribute("value", "Medium");
+                editPriorityoption3.setAttribute("value", "Low");
 
                 this.body.appendChild(editModal);
                 editModal.appendChild(editForm);
                 editForm.appendChild(editTitle);
                 editForm.appendChild(editParagraph);
+                editForm.appendChild(editTitleLabel);
+                editForm.appendChild(editTitleinput);
+                editForm.appendChild(editDescriptionLabel);
+                editForm.appendChild(editDescriptioninput);
+                editForm.appendChild(editDueDateLabel);
+                editForm.appendChild(editDueDateinput);
+                editForm.appendChild(editPriorityLabel);
+                editForm.appendChild(editPrioritySelect);
+                editPrioritySelect.appendChild(editPriorityoption0);
+                editPrioritySelect.appendChild(editPriorityoption1);
+                editPrioritySelect.appendChild(editPriorityoption2);
+                editPrioritySelect.appendChild(editPriorityoption3);
                 editModal.showModal();
             })
 
