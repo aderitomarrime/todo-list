@@ -124,6 +124,25 @@ class DomManipulation{
                 taskContainer.remove();
             })
 
+            pencil.addEventListener("click", ()=> {
+                const editModal= document.createElement("dialog");
+                const editForm = document.createElement("form");
+                const editTitle = document.createElement("h1");
+                const editParagraph = document.createElement("p");
+
+                editTitle.textContent = "Update Details";
+                editParagraph.textContent = "Blank fields will not be updated";
+
+                editModal.setAttribute("closedby", "any");
+                editModal.setAttribute("id", "editModal");
+
+                this.body.appendChild(editModal);
+                editModal.appendChild(editForm);
+                editForm.appendChild(editTitle);
+                editForm.appendChild(editParagraph);
+                editModal.showModal();
+            })
+
             this.myMain.appendChild(taskContainer);
             taskContainer.appendChild(title);
             taskContainer.appendChild(description);
