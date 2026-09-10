@@ -13,25 +13,25 @@ class Task {
     }
 
     update(title, description, dueDate, priority){
-        if(title == undefined) {
+        if(title == "") {
             this.title = this.title;
         }else {
             this.title = title;
         }
 
-        if(description == undefined) {
+        if(description == "") {
             this.description = this.description;
         }else {
             this.description = description;
         }
 
-        if(dueDate == undefined) {
+        if(dueDate == "") {
             this.dueDate = this.dueDate;
         }else {
             this.dueDate = dueDate;
         }
 
-        if(priority == undefined) {
+        if(priority == "") {
             this.priority = this.priority;
         }else {
             this.priority = priority;

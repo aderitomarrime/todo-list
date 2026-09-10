@@ -66,6 +66,7 @@ class DomManipulation{
             done.setAttribute("type", "checkbox");
             done.setAttribute("id", `${task.id}`);
             trash.setAttribute("id", `${task.id}`);
+            pencil.setAttribute("id", `${task.id}`);
 
             title.textContent = task.title;
             description.textContent = task.description;
@@ -124,7 +125,9 @@ class DomManipulation{
                 taskContainer.remove();
             })
 
-            pencil.addEventListener("click", ()=> {
+            pencil.addEventListener("click", (event)=> {
+                const taskIndex = arrayOfProjects[projectIndex].findTaskIndex(event.target.id);
+                
                 const editModal= document.createElement("dialog");
                 const editForm = document.createElement("form");
                 const editTitle = document.createElement("h1");
@@ -175,7 +178,7 @@ class DomManipulation{
                 editPriorityLabel.setAttribute("for", "priority");
                 editPrioritySelect.setAttribute("id", "priority");
                 editPrioritySelect.setAttribute("name", "priority");
-                editPriorityoption0.setAttribute("value", "0");
+                editPriorityoption0.setAttribute("value", "");
                 editPriorityoption1.setAttribute("value", "High");
                 editPriorityoption2.setAttribute("value", "Medium");
                 editPriorityoption3.setAttribute("value", "Low");
@@ -211,10 +214,18 @@ class DomManipulation{
                     const newPriority = document.querySelector('select[name="priority"]').value;
 
                     alert(newTitle);
-                    alert(newDescription);
-                    alert(newDueDate);
-                    alert(newPriority);
+                    // alert(newDescription);
+                    // alert(newDueDate);
+                    // alert(newPriority);
+                    // alert(taskIndex);
+                    // alert(arrayOfProjects[projectIndex].tasks[taskIndex].title);
+                    arrayOfProjects[projectIndex].tasks[taskIndex].update(newTitle, newDescription, newDueDate, newPriority);
+                    // alert(arrayOfProjects[projectIndex].tasks[taskIndex].title);
+                    // console.log(arrayOfProjects);
+                    // console.log(projectIndex);
+                    this.listTasks(projectIndex, arrayOfProjects);
 
+                    editForm.reset();
                     event.preventDefault();
                 })
             })
