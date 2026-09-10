@@ -141,6 +141,7 @@ class DomManipulation{
                 const editPriorityoption1 = document.createElement("option");
                 const editPriorityoption2 = document.createElement("option");
                 const editPriorityoption3 = document.createElement("option");
+                const editSubmitButton = document.createElement("input");
 
                 editTitle.textContent = "Update Details";
                 editParagraph.textContent = "Blank fields will not be updated";
@@ -178,6 +179,11 @@ class DomManipulation{
                 editPriorityoption2.setAttribute("value", "Medium");
                 editPriorityoption3.setAttribute("value", "Low");
 
+                editSubmitButton.setAttribute("id", "update");
+                editSubmitButton.setAttribute("type", "submit");
+                editSubmitButton.setAttribute("value", "Update");
+                editSubmitButton.setAttribute("name", "update");
+
                 this.body.appendChild(editModal);
                 editModal.appendChild(editForm);
                 editForm.appendChild(editTitle);
@@ -194,6 +200,7 @@ class DomManipulation{
                 editPrioritySelect.appendChild(editPriorityoption1);
                 editPrioritySelect.appendChild(editPriorityoption2);
                 editPrioritySelect.appendChild(editPriorityoption3);
+                editForm.appendChild(editSubmitButton);
                 editModal.showModal();
             })
 
