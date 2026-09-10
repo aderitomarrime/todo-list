@@ -19,6 +19,7 @@ const DomManipulationObject = new DomManipulation();
 DomManipulationObject.createEssentials();
 DomManipulationObject.createProjects(projects);
 DomManipulationObject.listTasks(0,projects);
+DomManipulationObject.createInfoDialog();
 
 //show 
 // console.log(projects);

@@ -86,37 +86,8 @@ class DomManipulation{
             })
 
             eye.addEventListener("click", ()=> {
-                const infoModal = document.createElement("dialog");
-                const closeInfoModal = document.createElement("button");
-
-                const titleModal = title.cloneNode(true);
-                const descriptionModal = description.cloneNode(true);
-                const dueDateModal = dueDate.cloneNode(true);
-                const priorityModal = priority.cloneNode(true);
-                const doneModal = document.createElement("p");
-
-                doneModal.textContent = "Done: "+ `${task.done ? "Yes": "No"}`;
-                descriptionModal.textContent =  `Description: ${task.description}`;
-                dueDateModal.textContent = `Due Date: ${task.dueDate}`;
-                priorityModal.textContent = `Priority: ${task.priority}`;
-
-                closeInfoModal.textContent = "X"
-
-                infoModal.setAttribute("closedby", "any");
-                infoModal.setAttribute("id", "infoModal");
-
-                this.body.appendChild(infoModal);
-                infoModal.appendChild(titleModal);
-                infoModal.appendChild(descriptionModal);
-                infoModal.appendChild(dueDateModal);
-                infoModal.appendChild(priorityModal);
-                infoModal.appendChild(doneModal);
-                infoModal.appendChild(closeInfoModal);
-                infoModal.showModal();
-
-                closeInfoModal.addEventListener("click", ()=>{
-                    infoModal.close();
-                })
+                this.updateInfoDialog(task)
+                this.infoModal.showModal();
             })
 
             trash.addEventListener("click", (event)=>{
@@ -240,6 +211,50 @@ class DomManipulation{
             taskContainer.appendChild(pencil);
             taskContainer.appendChild(trash);
         })
+    }
+
+    createInfoDialog(){
+        this.infoModal = document.createElement("dialog");
+        const closeInfoModal = document.createElement("button");
+
+        const titleModal = document.createElement("h1");
+        const descriptionModal = document.createElement("p");
+        const dueDateModal = document.createElement("p");
+        const priorityModal = document.createElement("p");
+        const doneModal = document.createElement("p");
+
+        closeInfoModal.textContent = "X"
+
+        this.infoModal.setAttribute("closedby", "any");
+        this.infoModal.setAttribute("id", "infoModal");
+
+        this.body.appendChild(this.infoModal);
+        this.infoModal.appendChild(titleModal);
+        this.infoModal.appendChild(descriptionModal);
+        this.infoModal.appendChild(dueDateModal);
+        this.infoModal.appendChild(priorityModal);
+        this.infoModal.appendChild(doneModal);
+        this.infoModal.appendChild(closeInfoModal);
+
+        closeInfoModal.addEventListener("click", ()=>{
+            this.infoModal.close();
+        })
+    }
+
+    updateInfoDialog(task){
+
+        const titleModal = document.querySelector("#infoModal h1");
+        const descriptionModal = document.querySelector("#infoModal p:nth-of-type(1)");
+        const dueDateModal = document.querySelector("#infoModal p:nth-of-type(2)");
+        const priorityModal = document.querySelector("#infoModal p:nth-of-type(3)");
+        const doneModal = document.querySelector("#infoModal p:nth-of-type(4)");
+
+        titleModal.textContent =  `${task.title}`;
+        descriptionModal.textContent =  `Description: ${task.description}`;
+        dueDateModal.textContent = `Due Date: ${task.dueDate}`;
+        priorityModal.textContent = `Priority: ${task.priority}`;
+        doneModal.textContent = "Done: "+ `${task.done ? "Yes": "No"}`;
+    
     }
 
 }
