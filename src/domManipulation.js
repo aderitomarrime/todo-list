@@ -174,6 +174,7 @@ class DomManipulation{
 
                 editPriorityLabel.setAttribute("for", "priority");
                 editPrioritySelect.setAttribute("id", "priority");
+                editPrioritySelect.setAttribute("name", "priority");
                 editPriorityoption0.setAttribute("value", "0");
                 editPriorityoption1.setAttribute("value", "High");
                 editPriorityoption2.setAttribute("value", "Medium");
@@ -202,6 +203,20 @@ class DomManipulation{
                 editPrioritySelect.appendChild(editPriorityoption3);
                 editForm.appendChild(editSubmitButton);
                 editModal.showModal();
+
+                editForm.addEventListener("submit", (event)=>{
+                    const newTitle = document.querySelector('input[name="title"]').value;
+                    const newDescription = document.querySelector('input[name="description"]').value;
+                    const newDueDate = document.querySelector('input[name="duedate"]').value;
+                    const newPriority = document.querySelector('select[name="priority"]').value;
+
+                    alert(newTitle);
+                    alert(newDescription);
+                    alert(newDueDate);
+                    alert(newPriority);
+
+                    event.preventDefault();
+                })
             })
 
             this.myMain.appendChild(taskContainer);
