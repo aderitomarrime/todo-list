@@ -17,6 +17,7 @@ class DomManipulation{
         this.myHeader = document.createElement("div");
         this.myAside = document.createElement("div");
         this.myMain = document.createElement("div");
+        this.allTasks = document.createElement("div");
         this.myTitle = document.createElement("h1");
         this.projectsTitle = document.createElement("h2");
         this.projectList = document.createElement("ul");
@@ -27,6 +28,7 @@ class DomManipulation{
         this.myHeader.classList.add("header");
         this.myAside.classList.add("aside");
         this.myMain.classList.add("main");
+        this.allTasks.classList.add("all-tasks");
 
         this.body.appendChild(this.myHeader);
         this.body.appendChild(this.myAside);
@@ -46,6 +48,7 @@ class DomManipulation{
             
             myProject.addEventListener('click', (event)=> {
                 document.querySelector("#editModal").remove();
+                this.createButtonToAddTasks(findProjectIndex(event.target.id), projects);
                 this.listTasks(findProjectIndex(event.target.id), projects);
                 this.createEditTaskInfoDialog(findProjectIndex(event.target.id), projects)
             })
@@ -53,9 +56,11 @@ class DomManipulation{
     }
 
     listTasks(projectIndex, arrayOfProjects){
-        this.myMain.innerHTML = '';
+        this.myMain.appendChild(this.allTasks);
+        this.allTasks.innerHTML = '';
 
         arrayOfProjects[projectIndex].tasks.forEach((task)=>{
+            
             const taskContainer = document.createElement("div");
             const eye = document.createElement("img");
             const trash = document.createElement("img");
@@ -67,6 +72,7 @@ class DomManipulation{
             const done = document.createElement("input");
 
             done.setAttribute("type", "checkbox");
+            
             done.setAttribute("id", `${task.id}`);
             trash.setAttribute("id", `${task.id}`);
             pencil.setAttribute("id", `${task.id}`);
@@ -105,7 +111,7 @@ class DomManipulation{
                 editSubmitButton.setAttribute("id", `${task.id}`);
             })
 
-            this.myMain.appendChild(taskContainer);
+            this.allTasks.appendChild(taskContainer);
             taskContainer.appendChild(title);
             taskContainer.appendChild(description);
             taskContainer.appendChild(dueDate);
@@ -257,8 +263,16 @@ class DomManipulation{
             const newPriority = document.querySelector('select[name="priority"]').value;
 
             arrayOfProjects[projectIndex].tasks[taskIndex].update(newTitle, newDescription, newDueDate, newPriority);
-            
+
             this.listTasks(projectIndex, arrayOfProjects);
+    }
+
+    createButtonToAddTasks(projectIndex, arrayOfProjects){
+        this.myMain.innerHTML = '';
+        const addButton =document.createElement("button");
+        addButton.textContent = "New Task";
+        addButton.setAttribute("data-id", `${arrayOfProjects[projectIndex].id}`);
+        this.myMain.appendChild(addButton);
     }
 
 }
