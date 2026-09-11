@@ -45,13 +45,16 @@ class DomManipulation{
             this.projectList.appendChild(myProject);
             
             myProject.addEventListener('click', (event)=> {
+                document.querySelector("#editModal").remove();
                 this.listTasks(findProjectIndex(event.target.id), projects);
+                this.createEditTaskInfoDialog(findProjectIndex(event.target.id), projects)
             })
         })
     }
 
     listTasks(projectIndex, arrayOfProjects){
         this.myMain.innerHTML = '';
+
         arrayOfProjects[projectIndex].tasks.forEach((task)=>{
             const taskContainer = document.createElement("div");
             const eye = document.createElement("img");
@@ -97,108 +100,9 @@ class DomManipulation{
             })
 
             pencil.addEventListener("click", (event)=> {
-                const taskIndex = arrayOfProjects[projectIndex].findTaskIndex(event.target.id);
-                
-                const editModal= document.createElement("dialog");
-                const editForm = document.createElement("form");
-                const editTitle = document.createElement("h1");
-                const editParagraph = document.createElement("p");
-                const editTitleLabel = document.createElement("label");
-                const editTitleinput = document.createElement("input");
-                const editDescriptionLabel = document.createElement("label");
-                const editDescriptioninput = document.createElement("input");
-                const editDueDateLabel = document.createElement("label");
-                const editDueDateinput = document.createElement("input");
-                const editPriorityLabel = document.createElement("label");
-                const editPrioritySelect = document.createElement("select");
-                const editPriorityoption0 = document.createElement("option");
-                const editPriorityoption1 = document.createElement("option");
-                const editPriorityoption2 = document.createElement("option");
-                const editPriorityoption3 = document.createElement("option");
-                const editSubmitButton = document.createElement("input");
-
-                editTitle.textContent = "Update Details";
-                editParagraph.textContent = "Blank fields will not be updated";
-                editTitleLabel.textContent = "Title";
-                editDescriptionLabel.textContent = "Description";
-                editDueDateLabel.textContent = "Due date";
-                editPriorityLabel.textContent = "Priority";
-                editPriorityoption0.textContent = "--Select Priority--";
-                editPriorityoption1.textContent = "High";
-                editPriorityoption2.textContent = "Medium";
-                editPriorityoption3.textContent = "Low";
-
-                editModal.setAttribute("closedby", "any");
-                editModal.setAttribute("id", "editModal");
-
-                editTitleLabel.setAttribute("for", "title");
-                editTitleinput.setAttribute("type", "text");
-                editTitleinput.setAttribute("name", "title");
-                editTitleinput.setAttribute("id", "title");
-
-                editDescriptionLabel.setAttribute("for", "description");
-                editDescriptioninput.setAttribute("type", "text");
-                editDescriptioninput.setAttribute("name", "description");
-                editDescriptioninput.setAttribute("id", "description");
-
-                editDueDateLabel.setAttribute("for", "duedate");
-                editDueDateinput.setAttribute("type", "date");
-                editDueDateinput.setAttribute("name", "duedate");
-                editDueDateinput.setAttribute("id", "duedate");
-
-                editPriorityLabel.setAttribute("for", "priority");
-                editPrioritySelect.setAttribute("id", "priority");
-                editPrioritySelect.setAttribute("name", "priority");
-                editPriorityoption0.setAttribute("value", "");
-                editPriorityoption1.setAttribute("value", "High");
-                editPriorityoption2.setAttribute("value", "Medium");
-                editPriorityoption3.setAttribute("value", "Low");
-
-                editSubmitButton.setAttribute("id", "update");
-                editSubmitButton.setAttribute("type", "submit");
-                editSubmitButton.setAttribute("value", "Update");
-                editSubmitButton.setAttribute("name", "update");
-
-                this.body.appendChild(editModal);
-                editModal.appendChild(editForm);
-                editForm.appendChild(editTitle);
-                editForm.appendChild(editParagraph);
-                editForm.appendChild(editTitleLabel);
-                editForm.appendChild(editTitleinput);
-                editForm.appendChild(editDescriptionLabel);
-                editForm.appendChild(editDescriptioninput);
-                editForm.appendChild(editDueDateLabel);
-                editForm.appendChild(editDueDateinput);
-                editForm.appendChild(editPriorityLabel);
-                editForm.appendChild(editPrioritySelect);
-                editPrioritySelect.appendChild(editPriorityoption0);
-                editPrioritySelect.appendChild(editPriorityoption1);
-                editPrioritySelect.appendChild(editPriorityoption2);
-                editPrioritySelect.appendChild(editPriorityoption3);
-                editForm.appendChild(editSubmitButton);
-                editModal.showModal();
-
-                editForm.addEventListener("submit", (event)=>{
-                    const newTitle = document.querySelector('input[name="title"]').value;
-                    const newDescription = document.querySelector('input[name="description"]').value;
-                    const newDueDate = document.querySelector('input[name="duedate"]').value;
-                    const newPriority = document.querySelector('select[name="priority"]').value;
-
-                    alert(newTitle);
-                    // alert(newDescription);
-                    // alert(newDueDate);
-                    // alert(newPriority);
-                    // alert(taskIndex);
-                    // alert(arrayOfProjects[projectIndex].tasks[taskIndex].title);
-                    arrayOfProjects[projectIndex].tasks[taskIndex].update(newTitle, newDescription, newDueDate, newPriority);
-                    // alert(arrayOfProjects[projectIndex].tasks[taskIndex].title);
-                    // console.log(arrayOfProjects);
-                    // console.log(projectIndex);
-                    this.listTasks(projectIndex, arrayOfProjects);
-
-                    editForm.reset();
-                    event.preventDefault();
-                })
+                this.editModal.showModal();
+                const editSubmitButton = document.querySelector('#editModal input[name="update"]');
+                editSubmitButton.setAttribute("id", `${task.id}`);
             })
 
             this.myMain.appendChild(taskContainer);
@@ -255,6 +159,106 @@ class DomManipulation{
         priorityModal.textContent = `Priority: ${task.priority}`;
         doneModal.textContent = "Done: "+ `${task.done ? "Yes": "No"}`;
     
+    }
+
+    createEditTaskInfoDialog(projectIndex, arrayOfProjects){
+        this.editModal= document.createElement("dialog");
+        const editForm = document.createElement("form");
+        const editTitle = document.createElement("h1");
+        const editParagraph = document.createElement("p");
+        const editTitleLabel = document.createElement("label");
+        const editTitleinput = document.createElement("input");
+        const editDescriptionLabel = document.createElement("label");
+        const editDescriptioninput = document.createElement("input");
+        const editDueDateLabel = document.createElement("label");
+        const editDueDateinput = document.createElement("input");
+        const editPriorityLabel = document.createElement("label");
+        const editPrioritySelect = document.createElement("select");
+        const editPriorityoption0 = document.createElement("option");
+        const editPriorityoption1 = document.createElement("option");
+        const editPriorityoption2 = document.createElement("option");
+        const editPriorityoption3 = document.createElement("option");
+        const editSubmitButton = document.createElement("input");
+
+        editTitle.textContent = "Update Details";
+        editParagraph.textContent = "Blank fields will not be updated";
+        editTitleLabel.textContent = "Title";
+        editDescriptionLabel.textContent = "Description";
+        editDueDateLabel.textContent = "Due date";
+        editPriorityLabel.textContent = "Priority";
+        editPriorityoption0.textContent = "--Select Priority--";
+        editPriorityoption1.textContent = "High";
+        editPriorityoption2.textContent = "Medium";
+        editPriorityoption3.textContent = "Low";
+
+        this.editModal.setAttribute("closedby", "any");
+        this.editModal.setAttribute("id", "editModal");
+
+        editTitleLabel.setAttribute("for", "title");
+        editTitleinput.setAttribute("type", "text");
+        editTitleinput.setAttribute("name", "title");
+        editTitleinput.setAttribute("id", "title");
+
+        editDescriptionLabel.setAttribute("for", "description");
+        editDescriptioninput.setAttribute("type", "text");
+        editDescriptioninput.setAttribute("name", "description");
+        editDescriptioninput.setAttribute("id", "description");
+
+        editDueDateLabel.setAttribute("for", "duedate");
+        editDueDateinput.setAttribute("type", "date");
+        editDueDateinput.setAttribute("name", "duedate");
+        editDueDateinput.setAttribute("id", "duedate");
+
+        editPriorityLabel.setAttribute("for", "priority");
+        editPrioritySelect.setAttribute("id", "priority");
+        editPrioritySelect.setAttribute("name", "priority");
+        editPriorityoption0.setAttribute("value", "");
+        editPriorityoption1.setAttribute("value", "High");
+        editPriorityoption2.setAttribute("value", "Medium");
+        editPriorityoption3.setAttribute("value", "Low");
+
+        // editSubmitButton.setAttribute("id", `${arrayOfProjects[projectIndex].id}`);
+        editSubmitButton.setAttribute("type", "submit");
+        editSubmitButton.setAttribute("value", "Update");
+        editSubmitButton.setAttribute("name", "update");
+
+        this.body.appendChild(this.editModal);
+        this.editModal.appendChild(editForm);
+        editForm.appendChild(editTitle);
+        editForm.appendChild(editParagraph);
+        editForm.appendChild(editTitleLabel);
+        editForm.appendChild(editTitleinput);
+        editForm.appendChild(editDescriptionLabel);
+        editForm.appendChild(editDescriptioninput);
+        editForm.appendChild(editDueDateLabel);
+        editForm.appendChild(editDueDateinput);
+        editForm.appendChild(editPriorityLabel);
+        editForm.appendChild(editPrioritySelect);
+        editPrioritySelect.appendChild(editPriorityoption0);
+        editPrioritySelect.appendChild(editPriorityoption1);
+        editPrioritySelect.appendChild(editPriorityoption2);
+        editPrioritySelect.appendChild(editPriorityoption3);
+        editForm.appendChild(editSubmitButton);
+
+        editForm.addEventListener("submit", (event)=>{
+            const taskIndex = arrayOfProjects[projectIndex].findTaskIndex(editSubmitButton.id);
+
+            this.updateTaskInfo(projectIndex, arrayOfProjects, taskIndex)
+
+            event.preventDefault();
+            editForm.reset();
+        })
+    }
+
+    updateTaskInfo(projectIndex, arrayOfProjects, taskIndex){
+            const newTitle = document.querySelector('input[name="title"]').value;
+            const newDescription = document.querySelector('input[name="description"]').value;
+            const newDueDate = document.querySelector('input[name="duedate"]').value;
+            const newPriority = document.querySelector('select[name="priority"]').value;
+
+            arrayOfProjects[projectIndex].tasks[taskIndex].update(newTitle, newDescription, newDueDate, newPriority);
+            
+            this.listTasks(projectIndex, arrayOfProjects);
     }
 
 }

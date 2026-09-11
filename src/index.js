@@ -20,6 +20,7 @@ DomManipulationObject.createEssentials();
 DomManipulationObject.createProjects(projects);
 DomManipulationObject.listTasks(0,projects);
 DomManipulationObject.createInfoDialog();
+DomManipulationObject.createEditTaskInfoDialog(0, projects);
 
 //show 
 // console.log(projects);
