@@ -1,4 +1,5 @@
 import { findProjectIndex, projects} from "./project.js";
+import {Task} from "./task.js"
 import eyeSvg from "./svg/eye.svg";
 import trashSvg from "./svg/trash.svg";
 import pencilSvg from "./svg/pencil.svg";
@@ -48,9 +49,11 @@ class DomManipulation{
             
             myProject.addEventListener('click', (event)=> {
                 document.querySelector("#editModal").remove();
+                document.querySelector("#newTaskModal").remove();
                 this.createButtonToAddTasks(findProjectIndex(event.target.id), projects);
                 this.listTasks(findProjectIndex(event.target.id), projects);
                 this.createEditTaskInfoDialog(findProjectIndex(event.target.id), projects)
+                this.createAddNewTaskDialog(findProjectIndex(event.target.id), projects)
             })
         })
     }
@@ -292,7 +295,6 @@ class DomManipulation{
         const newTaskDueDateinput = document.createElement("input");
         const newTaskPriorityLabel = document.createElement("label");
         const newTaskPrioritySelect = document.createElement("select");
-        const newTaskPriorityoption0 = document.createElement("option");
         const newTaskPriorityoption1 = document.createElement("option");
         const newTaskPriorityoption2 = document.createElement("option");
         const newTaskPriorityoption3 = document.createElement("option");
@@ -306,7 +308,6 @@ class DomManipulation{
         newTaskDescriptionLabel.textContent = "Description";
         newTaskDueDateLabel.textContent = "Due date";
         newTaskPriorityLabel.textContent = "Priority";
-        newTaskPriorityoption0.textContent = "--Select Priority--";
         newTaskPriorityoption1.textContent = "High";
         newTaskPriorityoption2.textContent = "Medium";
         newTaskPriorityoption3.textContent = "Low";
@@ -315,38 +316,37 @@ class DomManipulation{
         this.newTaskModal.setAttribute("closedby", "any");
         this.newTaskModal.setAttribute("id", "newTaskModal");
 
-        newTaskTitleLabel.setAttribute("for", "title");
+        newTaskTitleLabel.setAttribute("for", "newtitle");
         newTaskTitleinput.setAttribute("type", "text");
-        newTaskTitleinput.setAttribute("name", "title");
-        newTaskTitleinput.setAttribute("id", "title");
+        newTaskTitleinput.setAttribute("name", "newtitle");
+        newTaskTitleinput.setAttribute("id", "newtitle");
 
-        newTaskDescriptionLabel.setAttribute("for", "description");
+        newTaskDescriptionLabel.setAttribute("for", "newdescription");
         newTaskDescriptioninput.setAttribute("type", "text");
-        newTaskDescriptioninput.setAttribute("name", "description");
-        newTaskDescriptioninput.setAttribute("id", "description");
+        newTaskDescriptioninput.setAttribute("name", "newdescription");
+        newTaskDescriptioninput.setAttribute("id", "newdescription");
 
-        newTaskDueDateLabel.setAttribute("for", "duedate");
+        newTaskDueDateLabel.setAttribute("for", "newduedate");
         newTaskDueDateinput.setAttribute("type", "date");
-        newTaskDueDateinput.setAttribute("name", "duedate");
-        newTaskDueDateinput.setAttribute("id", "duedate");
+        newTaskDueDateinput.setAttribute("name", "newduedate");
+        newTaskDueDateinput.setAttribute("id", "newduedate");
 
-        newTaskPriorityLabel.setAttribute("for", "priority");
-        newTaskPrioritySelect.setAttribute("id", "priority");
-        newTaskPrioritySelect.setAttribute("name", "priority");
-        newTaskPriorityoption0.setAttribute("value", "");
+        newTaskPriorityLabel.setAttribute("for", "newpriority");
+        newTaskPrioritySelect.setAttribute("id", "newpriority");
+        newTaskPrioritySelect.setAttribute("name", "newpriority");
         newTaskPriorityoption1.setAttribute("value", "High");
         newTaskPriorityoption2.setAttribute("value", "Medium");
         newTaskPriorityoption3.setAttribute("value", "Low");
 
-        newTaskSubmitButton.setAttribute("id", `${arrayOfProjects[projectIndex].id}`);
+        // newTaskSubmitButton.setAttribute("id", `${arrayOfProjects[projectIndex].id}`);
         newTaskSubmitButton.setAttribute("type", "submit");
         newTaskSubmitButton.setAttribute("value", "Add Task");
-        newTaskSubmitButton.setAttribute("name", "update");
+        newTaskSubmitButton.setAttribute("name", "addTask");
 
-        newTaskTDoneLabel.setAttribute("for", "isdone");
+        newTaskTDoneLabel.setAttribute("for", "newisdone");
         newTaskTDoneinput.setAttribute("type", "checkbox");
-        newTaskTDoneinput.setAttribute("name", "isdone");
-        newTaskTDoneinput.setAttribute("id", "isdone");
+        newTaskTDoneinput.setAttribute("name", "newisdone");
+        newTaskTDoneinput.setAttribute("id", "newisdone");
 
         this.body.appendChild(this.newTaskModal);
         this.newTaskModal.appendChild(newTaskForm);
@@ -360,7 +360,6 @@ class DomManipulation{
         newTaskForm.appendChild(newTaskDueDateinput);
         newTaskForm.appendChild(newTaskPriorityLabel);
         newTaskForm.appendChild(newTaskPrioritySelect);
-        newTaskPrioritySelect.appendChild(newTaskPriorityoption0);
         newTaskPrioritySelect.appendChild(newTaskPriorityoption1);
         newTaskPrioritySelect.appendChild(newTaskPriorityoption2);
         newTaskPrioritySelect.appendChild(newTaskPriorityoption3);
@@ -369,13 +368,26 @@ class DomManipulation{
         newTaskForm.appendChild(newTaskSubmitButton);
 
         newTaskForm.addEventListener("submit", (event)=>{
-            // const taskIndex = arrayOfProjects[projectIndex].findTaskIndex(newTaskSubmitButton.id);
-
-            // this.updateTaskInfo(projectIndex, arrayOfProjects, taskIndex)
-
+            
+            this.addNewTask(projectIndex, arrayOfProjects);
+        
             event.preventDefault();
             newTaskForm.reset();
         })
+    }
+
+    addNewTask(projectIndex, arrayOfProjects){
+        const newTitle = document.querySelector('input[name="newtitle"]').value;
+        const newDescription = document.querySelector('input[name="newdescription"]').value;
+        const newDueDate = document.querySelector('input[name="newduedate"]').value;
+        const newPriority = document.querySelector('select[name="newpriority"]').value;
+        const newIsDone = document.querySelector('input[name="newisdone"]').value;
+
+        const newTask = new Task(newTitle, newDescription, newDueDate, newPriority, newIsDone);
+
+        arrayOfProjects[projectIndex].tasks.push(newTask);
+
+        this.listTasks(projectIndex, arrayOfProjects);
     }
 
 }
