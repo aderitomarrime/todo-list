@@ -265,6 +265,7 @@ class DomManipulation{
             this.updateTaskInfo(projectIndex, arrayOfProjects, taskIndex)
 
             event.preventDefault();
+            this.editModal.close();
             editForm.reset();
         })
     }
@@ -393,6 +394,7 @@ class DomManipulation{
             this.addNewTask(projectIndex, arrayOfProjects);
         
             event.preventDefault();
+            this.newTaskModal.close();
             newTaskForm.reset();
         })
     }
