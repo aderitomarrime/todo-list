@@ -187,6 +187,7 @@ class DomManipulation{
         const editPriorityoption1 = document.createElement("option");
         const editPriorityoption2 = document.createElement("option");
         const editPriorityoption3 = document.createElement("option");
+        const editCancelButton = document.createElement("input");
         const editSubmitButton = document.createElement("input");
 
         editTitle.textContent = "Update Details";
@@ -226,6 +227,10 @@ class DomManipulation{
         editPriorityoption2.setAttribute("value", "Medium");
         editPriorityoption3.setAttribute("value", "Low");
 
+        editCancelButton.setAttribute("type", "button");
+        editCancelButton.setAttribute("value", "Cancel");
+        editCancelButton.setAttribute("formmethod", "dialog");
+
         // editSubmitButton.setAttribute("id", `${arrayOfProjects[projectIndex].id}`);
         editSubmitButton.setAttribute("type", "submit");
         editSubmitButton.setAttribute("value", "Update");
@@ -247,7 +252,12 @@ class DomManipulation{
         editPrioritySelect.appendChild(editPriorityoption1);
         editPrioritySelect.appendChild(editPriorityoption2);
         editPrioritySelect.appendChild(editPriorityoption3);
+        editForm.appendChild(editCancelButton);
         editForm.appendChild(editSubmitButton);
+
+        editCancelButton.addEventListener("click", ()=>{
+            this.editModal.close()
+        })
 
         editForm.addEventListener("submit", (event)=>{
             const taskIndex = arrayOfProjects[projectIndex].findTaskIndex(editSubmitButton.id);
@@ -298,9 +308,10 @@ class DomManipulation{
         const newTaskPriorityoption1 = document.createElement("option");
         const newTaskPriorityoption2 = document.createElement("option");
         const newTaskPriorityoption3 = document.createElement("option");
-        const newTaskSubmitButton = document.createElement("input");
         const newTaskTDoneLabel = document.createElement("label");
         const newTaskTDoneinput = document.createElement("input");
+        const newTaskSubmitButton = document.createElement("input");
+        const newTaskCancelButton = document.createElement("input");
 
         newTaskTitle.textContent = "New Task";
         newTaskParagraph.textContent = "Fill in the inputs with the task's details";
@@ -338,15 +349,20 @@ class DomManipulation{
         newTaskPriorityoption2.setAttribute("value", "Medium");
         newTaskPriorityoption3.setAttribute("value", "Low");
 
+        newTaskTDoneLabel.setAttribute("for", "newisdone");
+        newTaskTDoneinput.setAttribute("type", "checkbox");
+        newTaskTDoneinput.setAttribute("name", "newisdone");
+        newTaskTDoneinput.setAttribute("id", "newisdone");
+
         // newTaskSubmitButton.setAttribute("id", `${arrayOfProjects[projectIndex].id}`);
         newTaskSubmitButton.setAttribute("type", "submit");
         newTaskSubmitButton.setAttribute("value", "Add Task");
         newTaskSubmitButton.setAttribute("name", "addTask");
 
-        newTaskTDoneLabel.setAttribute("for", "newisdone");
-        newTaskTDoneinput.setAttribute("type", "checkbox");
-        newTaskTDoneinput.setAttribute("name", "newisdone");
-        newTaskTDoneinput.setAttribute("id", "newisdone");
+        // newTaskSubmitButton.setAttribute("id", `${arrayOfProjects[projectIndex].id}`);
+        newTaskCancelButton.setAttribute("type", "button");
+        newTaskCancelButton.setAttribute("value", "Cancel");
+        newTaskCancelButton.setAttribute("formmethod", "dialog");
 
         this.body.appendChild(this.newTaskModal);
         this.newTaskModal.appendChild(newTaskForm);
@@ -365,7 +381,12 @@ class DomManipulation{
         newTaskPrioritySelect.appendChild(newTaskPriorityoption3);
         newTaskForm.appendChild(newTaskTDoneLabel);
         newTaskForm.appendChild(newTaskTDoneinput);
+        newTaskForm.appendChild(newTaskCancelButton);
         newTaskForm.appendChild(newTaskSubmitButton);
+
+        newTaskCancelButton.addEventListener("click", ()=>{
+            this.newTaskModal.close();
+        });
 
         newTaskForm.addEventListener("submit", (event)=>{
             
@@ -381,7 +402,7 @@ class DomManipulation{
         const newDescription = document.querySelector('input[name="newdescription"]').value;
         const newDueDate = document.querySelector('input[name="newduedate"]').value;
         const newPriority = document.querySelector('select[name="newpriority"]').value;
-        const newIsDone = document.querySelector('input[name="newisdone"]').value;
+        const newIsDone = document.querySelector('input[name="newisdone"]').checked;
 
         const newTask = new Task(newTitle, newDescription, newDueDate, newPriority, newIsDone);
 
