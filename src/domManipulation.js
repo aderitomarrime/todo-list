@@ -273,6 +273,109 @@ class DomManipulation{
         addButton.textContent = "New Task";
         addButton.setAttribute("data-id", `${arrayOfProjects[projectIndex].id}`);
         this.myMain.appendChild(addButton);
+
+        addButton.addEventListener("click", ()=>{
+            this.newTaskModal.showModal();
+        })
+    }
+
+    createAddNewTaskDialog(projectIndex, arrayOfProjects){
+        this.newTaskModal= document.createElement("dialog");
+        const newTaskForm = document.createElement("form");
+        const newTaskTitle = document.createElement("h1");
+        const newTaskParagraph = document.createElement("p");
+        const newTaskTitleLabel = document.createElement("label");
+        const newTaskTitleinput = document.createElement("input");
+        const newTaskDescriptionLabel = document.createElement("label");
+        const newTaskDescriptioninput = document.createElement("input");
+        const newTaskDueDateLabel = document.createElement("label");
+        const newTaskDueDateinput = document.createElement("input");
+        const newTaskPriorityLabel = document.createElement("label");
+        const newTaskPrioritySelect = document.createElement("select");
+        const newTaskPriorityoption0 = document.createElement("option");
+        const newTaskPriorityoption1 = document.createElement("option");
+        const newTaskPriorityoption2 = document.createElement("option");
+        const newTaskPriorityoption3 = document.createElement("option");
+        const newTaskSubmitButton = document.createElement("input");
+        const newTaskTDoneLabel = document.createElement("label");
+        const newTaskTDoneinput = document.createElement("input");
+
+        newTaskTitle.textContent = "New Task";
+        newTaskParagraph.textContent = "Fill in the inputs with the task's details";
+        newTaskTitleLabel.textContent = "Title";
+        newTaskDescriptionLabel.textContent = "Description";
+        newTaskDueDateLabel.textContent = "Due date";
+        newTaskPriorityLabel.textContent = "Priority";
+        newTaskPriorityoption0.textContent = "--Select Priority--";
+        newTaskPriorityoption1.textContent = "High";
+        newTaskPriorityoption2.textContent = "Medium";
+        newTaskPriorityoption3.textContent = "Low";
+        newTaskTDoneLabel.textContent = "Is done?";
+
+        this.newTaskModal.setAttribute("closedby", "any");
+        this.newTaskModal.setAttribute("id", "newTaskModal");
+
+        newTaskTitleLabel.setAttribute("for", "title");
+        newTaskTitleinput.setAttribute("type", "text");
+        newTaskTitleinput.setAttribute("name", "title");
+        newTaskTitleinput.setAttribute("id", "title");
+
+        newTaskDescriptionLabel.setAttribute("for", "description");
+        newTaskDescriptioninput.setAttribute("type", "text");
+        newTaskDescriptioninput.setAttribute("name", "description");
+        newTaskDescriptioninput.setAttribute("id", "description");
+
+        newTaskDueDateLabel.setAttribute("for", "duedate");
+        newTaskDueDateinput.setAttribute("type", "date");
+        newTaskDueDateinput.setAttribute("name", "duedate");
+        newTaskDueDateinput.setAttribute("id", "duedate");
+
+        newTaskPriorityLabel.setAttribute("for", "priority");
+        newTaskPrioritySelect.setAttribute("id", "priority");
+        newTaskPrioritySelect.setAttribute("name", "priority");
+        newTaskPriorityoption0.setAttribute("value", "");
+        newTaskPriorityoption1.setAttribute("value", "High");
+        newTaskPriorityoption2.setAttribute("value", "Medium");
+        newTaskPriorityoption3.setAttribute("value", "Low");
+
+        newTaskSubmitButton.setAttribute("id", `${arrayOfProjects[projectIndex].id}`);
+        newTaskSubmitButton.setAttribute("type", "submit");
+        newTaskSubmitButton.setAttribute("value", "Add Task");
+        newTaskSubmitButton.setAttribute("name", "update");
+
+        newTaskTDoneLabel.setAttribute("for", "isdone");
+        newTaskTDoneinput.setAttribute("type", "checkbox");
+        newTaskTDoneinput.setAttribute("name", "isdone");
+        newTaskTDoneinput.setAttribute("id", "isdone");
+
+        this.body.appendChild(this.newTaskModal);
+        this.newTaskModal.appendChild(newTaskForm);
+        newTaskForm.appendChild(newTaskTitle);
+        newTaskForm.appendChild(newTaskParagraph);
+        newTaskForm.appendChild(newTaskTitleLabel);
+        newTaskForm.appendChild(newTaskTitleinput);
+        newTaskForm.appendChild(newTaskDescriptionLabel);
+        newTaskForm.appendChild(newTaskDescriptioninput);
+        newTaskForm.appendChild(newTaskDueDateLabel);
+        newTaskForm.appendChild(newTaskDueDateinput);
+        newTaskForm.appendChild(newTaskPriorityLabel);
+        newTaskForm.appendChild(newTaskPrioritySelect);
+        newTaskPrioritySelect.appendChild(newTaskPriorityoption0);
+        newTaskPrioritySelect.appendChild(newTaskPriorityoption1);
+        newTaskPrioritySelect.appendChild(newTaskPriorityoption2);
+        newTaskPrioritySelect.appendChild(newTaskPriorityoption3);
+        newTaskForm.appendChild(newTaskTDoneLabel);
+        newTaskForm.appendChild(newTaskTDoneinput);
+        newTaskForm.appendChild(newTaskSubmitButton);
+
+        newTaskForm.addEventListener("submit", (event)=>{
+            // const taskIndex = arrayOfProjects[projectIndex].findTaskIndex(newTaskSubmitButton.id);
+
+            // this.updateTaskInfo(projectIndex, arrayOfProjects, taskIndex)
+
+            event.preventDefault();
+            newTaskForm.reset();
+        })
     }
 
 }
