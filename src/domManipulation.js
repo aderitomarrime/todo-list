@@ -162,12 +162,30 @@ class DomManipulation{
         const priorityModal = document.querySelector("#infoModal p:nth-of-type(3)");
         const doneModal = document.querySelector("#infoModal p:nth-of-type(4)");
 
-        titleModal.textContent =  `${task.title}`;
-        descriptionModal.textContent =  `Description: ${task.description}`;
-        dueDateModal.textContent = `Due Date: ${task.dueDate}`;
-        priorityModal.textContent = `Priority: ${task.priority}`;
+        console.log(task.title);
+
+        if(task.title != ""){
+            titleModal.textContent =  `${task.title}`;
+        }else{
+            titleModal.textContent =  ``;
+        }
+        if(task.description != ""){
+            descriptionModal.textContent =  `Description: ${task.description}`;
+        }else{
+            descriptionModal.textContent =  ``;
+        }
+        if(task.dueDate != ""){
+            dueDateModal.textContent = `Due Date: ${task.dueDate}`;
+        }else{
+            priorityModal.textContent = ``;
+        }
+        if(task.priority != ""){
+            priorityModal.textContent = `Priority: ${task.priority}`;
+        }else{
+            priorityModal.textContent = ``;
+        }
         doneModal.textContent = "Done: "+ `${task.done ? "Yes": "No"}`;
-    
+        
     }
 
     createEditTaskInfoDialog(projectIndex, arrayOfProjects){
