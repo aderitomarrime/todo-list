@@ -1,4 +1,4 @@
-import { findProjectIndex, projects} from "./project.js";
+import { findProjectIndex, projects, Project} from "./project.js";
 import {Task} from "./task.js"
 import eyeSvg from "./svg/eye.svg";
 import trashSvg from "./svg/trash.svg";
@@ -41,6 +41,8 @@ class DomManipulation{
 
     createProjects(arrayOfProjects){
         // learn about "perda de contexto"
+
+        this.projectList.innerHTML = '';
         arrayOfProjects.forEach((project)=>{
             const myProject = document.createElement("li");
             myProject.textContent = project.name;
@@ -432,9 +434,10 @@ class DomManipulation{
     }
 
     createButtonToAddProject(){
-        const addProjectButton =document.createElement("button");
+        const addProjectButton = document.createElement("button");
+        const listOfProjects = document.querySelector(".aside ul")
         addProjectButton.textContent = "New Project";
-        this.myAside.appendChild(addProjectButton);
+        this.myAside.insertBefore(addProjectButton, listOfProjects);
 
         addProjectButton.addEventListener("click", ()=>{
             this.newProjectModal.showModal();
@@ -446,24 +449,23 @@ class DomManipulation{
         const newProjectForm = document.createElement("form");
         const newProjectTitle = document.createElement("h1");
         const newProjectParagraph = document.createElement("p");
+        const newProjecNameLabel = document.createElement("label");
+        const newProjecNameinput = document.createElement("input");
         const newProjectSubmitButton = document.createElement("input");
         const newCancelProjectButton = document.createElement("button");
 
-        const newProjectTitleLabel = document.createElement("label");
-        const newProjectTitleinput = document.createElement("input");
-
         newProjectTitle.textContent = "New Project";
         newProjectParagraph.textContent = "Fill in the input with the project name";
-        newProjectTitleLabel.textContent = "Name";
+        newProjecNameLabel.textContent = "Name";
         newCancelProjectButton.textContent = "X"
 
         this.newProjectModal.setAttribute("closedby", "any");
         this.newProjectModal.setAttribute("id", "newProjectModal");
 
-        newProjectTitleLabel.setAttribute("for", "newproject");
-        newProjectTitleinput.setAttribute("type", "text");
-        newProjectTitleinput.setAttribute("name", "newproject");
-        newProjectTitleinput.setAttribute("id", "newproject");
+        newProjecNameLabel.setAttribute("for", "newproject");
+        newProjecNameinput.setAttribute("type", "text");
+        newProjecNameinput.setAttribute("name", "newproject");
+        newProjecNameinput.setAttribute("id", "newproject");
 
         newProjectSubmitButton.setAttribute("type", "submit");
         newProjectSubmitButton.setAttribute("value", "Add Project");
@@ -477,8 +479,8 @@ class DomManipulation{
         this.newProjectModal.appendChild(newProjectForm);
         newProjectForm.appendChild(newProjectTitle);
         newProjectForm.appendChild(newProjectParagraph);
-        newProjectForm.appendChild(newProjectTitleLabel);
-        newProjectForm.appendChild(newProjectTitleinput);
+        newProjectForm.appendChild(newProjecNameLabel);
+        newProjectForm.appendChild(newProjecNameinput);
         newProjectForm.appendChild(newCancelProjectButton);
         newProjectForm.appendChild(newProjectSubmitButton);
 
@@ -492,9 +494,18 @@ class DomManipulation{
             this.addNewProject(arrayOfProjects);
         
             event.preventDefault();
-            this.newProjectForm.close();
-            this.newProjectForm.reset();
+            this.newProjectModal.close();
+            newProjectForm.reset();
         })
+    }
+
+    addNewProject(arrayOfProjects){
+        const newProjectName = document.querySelector('input[name="newproject"]').value;
+        const newProject = new Project(newProjectName, []);
+
+        arrayOfProjects.push(newProject);
+
+        this.createProjects(arrayOfProjects);
     }
 
 }

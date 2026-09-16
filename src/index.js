@@ -17,14 +17,15 @@ projects[1].tasks.push(new Task("Arms", "30 min per week", "31/12/2026", "Medium
 
 const DomManipulationObject = new DomManipulation();
 DomManipulationObject.createEssentials();
+DomManipulationObject.createAddNewProjectDialog(projects);
+DomManipulationObject.createButtonToAddProject();
 DomManipulationObject.createProjects(projects);
 DomManipulationObject.createButtonToAddTasks(0,projects);
 DomManipulationObject.listTasks(0,projects);
 DomManipulationObject.createInfoDialog();
 DomManipulationObject.createEditTaskInfoDialog(0, projects);
 DomManipulationObject.createAddNewTaskDialog(0, projects);
-DomManipulationObject.createButtonToAddProject();
-DomManipulationObject.createAddNewProjectDialog(projects);
+
 
 //show 
 // console.log(projects);
