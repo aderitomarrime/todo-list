@@ -431,6 +431,122 @@ class DomManipulation{
         this.listTasks(projectIndex, arrayOfProjects);
     }
 
+    createButtonToAddProject(arrayOfProjects){
+        const addProjectButton =document.createElement("button");
+        addProjectButton.textContent = "New Project";
+        this.myAside.appendChild(addProjectButton);
+
+        addProjectButton.addEventListener("click", ()=>{
+            this.newProjectModal.showModal();
+        })
+    }
+
+    // createAddNewTaskDialog(projectIndex, arrayOfProjects){
+    //     this.newTaskModal= document.createElement("dialog");
+    //     const newTaskForm = document.createElement("form");
+    //     const newTaskTitle = document.createElement("h1");
+    //     const newTaskParagraph = document.createElement("p");
+    //     const newTaskTitleLabel = document.createElement("label");
+    //     const newTaskTitleinput = document.createElement("input");
+    //     const newTaskDescriptionLabel = document.createElement("label");
+    //     const newTaskDescriptioninput = document.createElement("input");
+    //     const newTaskDueDateLabel = document.createElement("label");
+    //     const newTaskDueDateinput = document.createElement("input");
+    //     const newTaskPriorityLabel = document.createElement("label");
+    //     const newTaskPrioritySelect = document.createElement("select");
+    //     const newTaskPriorityoption1 = document.createElement("option");
+    //     const newTaskPriorityoption2 = document.createElement("option");
+    //     const newTaskPriorityoption3 = document.createElement("option");
+    //     const newTaskTDoneLabel = document.createElement("label");
+    //     const newTaskTDoneinput = document.createElement("input");
+    //     const newTaskSubmitButton = document.createElement("input");
+    //     const newTaskCancelButton = document.createElement("input");
+
+    //     newTaskTitle.textContent = "New Task";
+    //     newTaskParagraph.textContent = "Fill in the inputs with the task's details";
+    //     newTaskTitleLabel.textContent = "Title";
+    //     newTaskDescriptionLabel.textContent = "Description";
+    //     newTaskDueDateLabel.textContent = "Due date";
+    //     newTaskPriorityLabel.textContent = "Priority";
+    //     newTaskPriorityoption1.textContent = "High";
+    //     newTaskPriorityoption2.textContent = "Medium";
+    //     newTaskPriorityoption3.textContent = "Low";
+    //     newTaskTDoneLabel.textContent = "Is done?";
+
+    //     this.newTaskModal.setAttribute("closedby", "any");
+    //     this.newTaskModal.setAttribute("id", "newTaskModal");
+
+    //     newTaskTitleLabel.setAttribute("for", "newtitle");
+    //     newTaskTitleinput.setAttribute("type", "text");
+    //     newTaskTitleinput.setAttribute("name", "newtitle");
+    //     newTaskTitleinput.setAttribute("id", "newtitle");
+
+    //     newTaskDescriptionLabel.setAttribute("for", "newdescription");
+    //     newTaskDescriptioninput.setAttribute("type", "text");
+    //     newTaskDescriptioninput.setAttribute("name", "newdescription");
+    //     newTaskDescriptioninput.setAttribute("id", "newdescription");
+
+    //     newTaskDueDateLabel.setAttribute("for", "newduedate");
+    //     newTaskDueDateinput.setAttribute("type", "date");
+    //     newTaskDueDateinput.setAttribute("name", "newduedate");
+    //     newTaskDueDateinput.setAttribute("id", "newduedate");
+
+    //     newTaskPriorityLabel.setAttribute("for", "newpriority");
+    //     newTaskPrioritySelect.setAttribute("id", "newpriority");
+    //     newTaskPrioritySelect.setAttribute("name", "newpriority");
+    //     newTaskPriorityoption1.setAttribute("value", "High");
+    //     newTaskPriorityoption2.setAttribute("value", "Medium");
+    //     newTaskPriorityoption3.setAttribute("value", "Low");
+
+    //     newTaskTDoneLabel.setAttribute("for", "newisdone");
+    //     newTaskTDoneinput.setAttribute("type", "checkbox");
+    //     newTaskTDoneinput.setAttribute("name", "newisdone");
+    //     newTaskTDoneinput.setAttribute("id", "newisdone");
+
+    //     // newTaskSubmitButton.setAttribute("id", `${arrayOfProjects[projectIndex].id}`);
+    //     newTaskSubmitButton.setAttribute("type", "submit");
+    //     newTaskSubmitButton.setAttribute("value", "Add Task");
+    //     newTaskSubmitButton.setAttribute("name", "addTask");
+
+    //     // newTaskSubmitButton.setAttribute("id", `${arrayOfProjects[projectIndex].id}`);
+    //     newTaskCancelButton.setAttribute("type", "button");
+    //     newTaskCancelButton.setAttribute("value", "Cancel");
+    //     newTaskCancelButton.setAttribute("formmethod", "dialog");
+
+    //     this.body.appendChild(this.newTaskModal);
+    //     this.newTaskModal.appendChild(newTaskForm);
+    //     newTaskForm.appendChild(newTaskTitle);
+    //     newTaskForm.appendChild(newTaskParagraph);
+    //     newTaskForm.appendChild(newTaskTitleLabel);
+    //     newTaskForm.appendChild(newTaskTitleinput);
+    //     newTaskForm.appendChild(newTaskDescriptionLabel);
+    //     newTaskForm.appendChild(newTaskDescriptioninput);
+    //     newTaskForm.appendChild(newTaskDueDateLabel);
+    //     newTaskForm.appendChild(newTaskDueDateinput);
+    //     newTaskForm.appendChild(newTaskPriorityLabel);
+    //     newTaskForm.appendChild(newTaskPrioritySelect);
+    //     newTaskPrioritySelect.appendChild(newTaskPriorityoption1);
+    //     newTaskPrioritySelect.appendChild(newTaskPriorityoption2);
+    //     newTaskPrioritySelect.appendChild(newTaskPriorityoption3);
+    //     newTaskForm.appendChild(newTaskTDoneLabel);
+    //     newTaskForm.appendChild(newTaskTDoneinput);
+    //     newTaskForm.appendChild(newTaskCancelButton);
+    //     newTaskForm.appendChild(newTaskSubmitButton);
+
+    //     newTaskCancelButton.addEventListener("click", ()=>{
+    //         this.newTaskModal.close();
+    //     });
+
+    //     newTaskForm.addEventListener("submit", (event)=>{
+            
+    //         this.addNewTask(projectIndex, arrayOfProjects);
+        
+    //         event.preventDefault();
+    //         this.newTaskModal.close();
+    //         newTaskForm.reset();
+    //     })
+    // }
+
 }
 
 export {DomManipulation};
