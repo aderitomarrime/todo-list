@@ -295,8 +295,11 @@ class DomManipulation{
             const newDescription = document.querySelector('input[name="description"]').value;
             const newDueDate = document.querySelector('input[name="duedate"]').value;
             const newPriority = document.querySelector('select[name="priority"]').value;
+            
+            const [year, month, day] = newDueDate.split("-");
+            const newDueDateFormated = new Date(year, month -1, day);
 
-            arrayOfProjects[projectIndex].tasks[taskIndex].update(newTitle, newDescription, newDueDate, newPriority);
+            arrayOfProjects[projectIndex].tasks[taskIndex].update(newTitle, newDescription, newDueDateFormated, newPriority);
 
             this.listTasks(projectIndex, arrayOfProjects);
     }
@@ -426,7 +429,10 @@ class DomManipulation{
         const newPriority = document.querySelector('select[name="newpriority"]').value;
         const newIsDone = document.querySelector('input[name="newisdone"]').checked;
 
-        const newTask = new Task(newTitle, newDescription, newDueDate, newPriority, newIsDone);
+        const [year, month, day] = newDueDate.split("-");
+        const newDueDateFormated = new Date(year, month -1, day);
+
+        const newTask = new Task(newTitle, newDescription, newDueDateFormated, newPriority, newIsDone);
 
         arrayOfProjects[projectIndex].tasks.push(newTask);
 
