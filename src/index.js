@@ -2,18 +2,18 @@ import {Task} from "./task.js";
 import {Project, projects, deleteProject, findProjectIndex} from "./project.js";
 import {DomManipulation} from "./domManipulation.js";
 
-projects.push(new Project("default", [new Task("Code", "Code everyday", "31/12/2026", "Hight", false)]));
+projects.push(new Project("default", [new Task("Code", "Code everyday", new Date(2000,0,7), "Hight", false)]));
 
-projects[0].tasks.push(new Task("YouTube", "Make Videos", "31/12/2026", "Hight", false));
+projects[0].tasks.push(new Task("YouTube", "Make Videos", new Date(2025,11,31), "Hight", false));
 
-projects[0].tasks.push(new Task("YouTube", "Subscribe", "31/12/2026", "Hight", true));
+projects[0].tasks.push(new Task("YouTube", "Subscribe", new Date(2027,1,23), "Hight", true));
 
 // Project 2
-projects.push(new Project("gym", [new Task("Push-ups", "Do it everyday", "31/12/2026", "Hight", false)]));
+projects.push(new Project("gym", [new Task("Push-ups", "Do it everyday", new Date("1997-1-1"), "Hight", false)]));
 
-projects[1].tasks.push(new Task("Cardio", "30 min per day", "31/12/2026", "Medium", false));
+projects[1].tasks.push(new Task("Cardio", "30 min per day", new Date("2025-12-31"), "Medium", false));
 
-projects[1].tasks.push(new Task("Arms", "30 min per week", "31/12/2026", "Medium", true));
+projects[1].tasks.push(new Task("Arms", "30 min per week", new Date("1999-1-1"), "Medium", true));
 
 const DomManipulationObject = new DomManipulation();
 DomManipulationObject.createEssentials();
