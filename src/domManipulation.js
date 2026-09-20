@@ -1,3 +1,4 @@
+import {format} from "date-fns";
 import { findProjectIndex, projects, Project} from "./project.js";
 import {Task} from "./task.js"
 import eyeSvg from "./svg/eye.svg";
@@ -76,6 +77,8 @@ class DomManipulation{
             const priority = document.createElement("p");
             const done = document.createElement("input");
 
+            let dueDateFormated;
+
             done.setAttribute("type", "checkbox");
             
             done.setAttribute("id", `${task.id}`);
@@ -84,7 +87,8 @@ class DomManipulation{
 
             title.textContent = task.title;
             description.textContent = task.description;
-            dueDate.textContent = task.dueDate;
+            dueDateFormated = format(task.dueDate, 'dd MMMM yyyy');
+            dueDate.textContent = dueDateFormated;
             priority.textContent = task.priority;
             eye.src = `${eyeSvg}`;
             trash.src = `${trashSvg}`;
@@ -297,7 +301,8 @@ class DomManipulation{
             const newPriority = document.querySelector('select[name="priority"]').value;
             
             const [year, month, day] = newDueDate.split("-");
-            const newDueDateFormated = new Date(year, month -1, day);
+            const newDueDateObject = new Date(year, month -1, day);
+            const newDueDateFormated = format(newDueDateObject, 'dd MMMM yyyy')
 
             arrayOfProjects[projectIndex].tasks[taskIndex].update(newTitle, newDescription, newDueDateFormated, newPriority);
 
@@ -430,7 +435,9 @@ class DomManipulation{
         const newIsDone = document.querySelector('input[name="newisdone"]').checked;
 
         const [year, month, day] = newDueDate.split("-");
-        const newDueDateFormated = new Date(year, month -1, day);
+        const newDueDateObject = new Date(year, month -1, day);
+        const newDueDateFormated = format(newDueDateObject, 'dd MMMM yyyy')
+        
 
         const newTask = new Task(newTitle, newDescription, newDueDateFormated, newPriority, newIsDone);
 
