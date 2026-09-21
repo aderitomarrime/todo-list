@@ -16,12 +16,12 @@ class Project{
 
 const projects = [];
 
-function deleteProject(projectIndex) {
-    projects.splice(projectIndex, 1);
+function deleteProject(arrayOfProjects, projectIndex) {
+    arrayOfProjects.splice(projectIndex, 1);
 }
 
-function findProjectIndex(id) {
-    return projects.findIndex(project => project.id == id)
+function findProjectIndex(arrayOfProjects, id) {
+    return arrayOfProjects.findIndex(project => project.id == id)
 }
 
 export {Project, projects, deleteProject, findProjectIndex};

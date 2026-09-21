@@ -53,10 +53,13 @@ class DomManipulation{
             myProject.addEventListener('click', (event)=> {
                 document.querySelector("#editModal").remove();
                 document.querySelector("#newTaskModal").remove();
-                this.createButtonToAddTasks(findProjectIndex(event.target.id), projects);
-                this.listTasks(findProjectIndex(event.target.id), projects);
-                this.createEditTaskInfoDialog(findProjectIndex(event.target.id), projects)
-                this.createAddNewTaskDialog(findProjectIndex(event.target.id), projects)
+                
+                const currentProjectIndex = findProjectIndex(arrayOfProjects, event.target.id)
+
+                this.createButtonToAddTasks(currentProjectIndex, arrayOfProjects);
+                this.listTasks(currentProjectIndex, arrayOfProjects);
+                this.createEditTaskInfoDialog(currentProjectIndex, arrayOfProjects)
+                this.createAddNewTaskDialog(currentProjectIndex, arrayOfProjects)
             })
         })
     }
