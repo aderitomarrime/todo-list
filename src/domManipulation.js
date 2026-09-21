@@ -1,5 +1,5 @@
 import {format} from "date-fns";
-import { findProjectIndex, projects, Project} from "./project.js";
+import { findProjectIndex, projects, Project, deleteProject} from "./project.js";
 import {Task} from "./task.js"
 import eyeSvg from "./svg/eye.svg";
 import trashSvg from "./svg/trash.svg";
@@ -46,20 +46,47 @@ class DomManipulation{
         this.projectList.innerHTML = '';
         arrayOfProjects.forEach((project)=>{
             const myProject = document.createElement("li");
-            myProject.textContent = project.name;
-            myProject.setAttribute("id", `${project.id}`);
+            const mySpan = document.createElement("span");
+            const divIcon = document.createElement("div");
+            const projectTrash = document.createElement("img");
+
+            const currentProjectIndex = findProjectIndex(arrayOfProjects, project.id)
+            
+            mySpan.textContent = project.name;
+            mySpan.setAttribute("id", `${project.id}`);
+            projectTrash.setAttribute("id", `${project.id}`);
+            projectTrash.setAttribute("src", `${trashSvg}`);
+
+            divIcon.append(projectTrash);
+            myProject.appendChild(mySpan);
+            myProject.appendChild(divIcon);
             this.projectList.appendChild(myProject);
             
-            myProject.addEventListener('click', (event)=> {
+            mySpan.addEventListener('click', (event)=> {
                 document.querySelector("#editModal").remove();
                 document.querySelector("#newTaskModal").remove();
                 
-                const currentProjectIndex = findProjectIndex(arrayOfProjects, event.target.id)
+                const projectIndex = findProjectIndex(arrayOfProjects, event.target.id)
 
-                this.createButtonToAddTasks(currentProjectIndex, arrayOfProjects);
-                this.listTasks(currentProjectIndex, arrayOfProjects);
-                this.createEditTaskInfoDialog(currentProjectIndex, arrayOfProjects)
-                this.createAddNewTaskDialog(currentProjectIndex, arrayOfProjects)
+                this.createButtonToAddTasks(projectIndex, arrayOfProjects);
+                this.listTasks(projectIndex, arrayOfProjects);
+                this.createEditTaskInfoDialog(projectIndex, arrayOfProjects)
+                this.createAddNewTaskDialog(projectIndex, arrayOfProjects)
+            })
+
+            projectTrash.addEventListener("click", (event)=>{
+                const projectIndex = findProjectIndex(arrayOfProjects, event.target.id)
+                deleteProject(arrayOfProjects, projectIndex);
+
+                if(arrayOfProjects.length > 0) {
+                    if(currentProjectIndex == projectIndex) {
+                        this.createProjects(arrayOfProjects);
+                        this.listTasks(0, arrayOfProjects);
+                    }
+                }else{
+                    this.allTasks.innerHTML = '';
+                }
+                myProject.remove();
             })
         })
     }
@@ -170,8 +197,6 @@ class DomManipulation{
         const dueDateModal = document.querySelector("#infoModal p:nth-of-type(2)");
         const priorityModal = document.querySelector("#infoModal p:nth-of-type(3)");
         const doneModal = document.querySelector("#infoModal p:nth-of-type(4)");
-
-        console.log(task.title);
 
         if(task.title != ""){
             titleModal.textContent =  `${task.title}`;
