@@ -439,10 +439,9 @@ class DomManipulation{
 
         const [year, month, day] = newDueDate.split("-");
         const newDueDateObject = new Date(year, month -1, day);
-        const newDueDateFormated = format(newDueDateObject, 'dd MMMM yyyy')
-        
+        // const newDueDateFormated = format(newDueDateObject, 'dd MMMM yyyy');
 
-        const newTask = new Task(newTitle, newDescription, newDueDateFormated, newPriority, newIsDone);
+        const newTask = new Task(newTitle, newDescription, newDueDateObject, newPriority, newIsDone);
 
         arrayOfProjects[projectIndex].tasks.push(newTask);
 
