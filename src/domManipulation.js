@@ -117,8 +117,15 @@ class DomManipulation{
 
             title.textContent = task.title;
             description.textContent = task.description;
-            dueDateFormated = format(task.dueDate, 'dd MMMM yyyy');
+
+            if(task.dueDate != "") {
+                dueDateFormated = format(task.dueDate, 'dd MMMM yyyy');
+            }else {
+                dueDateFormated = task.dueDate;
+            }
+            
             dueDate.textContent = dueDateFormated;
+
             priority.textContent = task.priority;
             eye.src = `${eyeSvg}`;
             trash.src = `${trashSvg}`;
@@ -463,10 +470,15 @@ class DomManipulation{
         const newPriority = document.querySelector('select[name="newpriority"]').value;
         const newIsDone = document.querySelector('input[name="newisdone"]').checked;
 
-        const [year, month, day] = newDueDate.split("-");
-        const newDueDateObject = new Date(year, month -1, day);
-        // const newDueDateFormated = format(newDueDateObject, 'dd MMMM yyyy');
+        let newDueDateObject;
 
+        if(newDueDate != "") {
+            const [year, month, day] = newDueDate.split("-");
+            newDueDateObject = new Date(year, month -1, day);
+        }else {
+            newDueDateObject = newDueDate;
+        }
+        
         const newTask = new Task(newTitle, newDescription, newDueDateObject, newPriority, newIsDone);
 
         arrayOfProjects[projectIndex].tasks.push(newTask);
