@@ -209,7 +209,8 @@ class DomManipulation{
             descriptionModal.textContent =  ``;
         }
         if(task.dueDate != ""){
-            dueDateModal.textContent = `Due Date: ${task.dueDate}`;
+            const dueDateFormated = format(task.dueDate, 'dd MMMM yyyy');
+            dueDateModal.textContent = `Due date: ${dueDateFormated}`;
         }else{
             priorityModal.textContent = ``;
         }
