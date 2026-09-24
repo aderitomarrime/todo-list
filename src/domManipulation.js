@@ -325,7 +325,7 @@ class DomManipulation{
 
         editForm.addEventListener("submit", (event)=>{
             const taskIndex = arrayOfProjects[projectIndex].findTaskIndex(editSubmitButton.id);
-
+            
             this.updateTaskInfo(projectIndex, arrayOfProjects, taskIndex)
 
             event.preventDefault();
@@ -339,12 +339,17 @@ class DomManipulation{
             const newDescription = document.querySelector('input[name="description"]').value;
             const newDueDate = document.querySelector('input[name="duedate"]').value;
             const newPriority = document.querySelector('select[name="priority"]').value;
-            
-            const [year, month, day] = newDueDate.split("-");
-            const newDueDateObject = new Date(year, month -1, day);
-            const newDueDateFormated = format(newDueDateObject, 'dd MMMM yyyy')
 
-            arrayOfProjects[projectIndex].tasks[taskIndex].update(newTitle, newDescription, newDueDateFormated, newPriority);
+            let newDueDateObject;
+
+            if(newDueDate != "") {
+                const [year, month, day] = newDueDate.split("-");
+                newDueDateObject = new Date(year, month -1, day);
+            }else {
+                newDueDateObject = newDueDate;
+            }
+            
+            arrayOfProjects[projectIndex].tasks[taskIndex].update(newTitle, newDescription, newDueDateObject, newPriority);
 
             this.listTasks(projectIndex, arrayOfProjects);
     }
