@@ -268,11 +268,15 @@ class DomManipulation{
         editTitleinput.setAttribute("type", "text");
         editTitleinput.setAttribute("name", "title");
         editTitleinput.setAttribute("id", "title");
+        editTitleinput.setAttribute("minlength", "3");
+        editTitleinput.setAttribute("maxlength", "30");
 
         editDescriptionLabel.setAttribute("for", "description");
         editDescriptioninput.setAttribute("type", "text");
         editDescriptioninput.setAttribute("name", "description");
         editDescriptioninput.setAttribute("id", "description");
+        editDescriptioninput.setAttribute("minlength", "3");
+        editDescriptioninput.setAttribute("maxlength", "150");
 
         editDueDateLabel.setAttribute("for", "duedate");
         editDueDateinput.setAttribute("type", "date");
@@ -396,11 +400,16 @@ class DomManipulation{
         newTaskTitleinput.setAttribute("type", "text");
         newTaskTitleinput.setAttribute("name", "newtitle");
         newTaskTitleinput.setAttribute("id", "newtitle");
+        newTaskTitleinput.setAttribute("required", "true");
+        newTaskTitleinput.setAttribute("minlength", "3");
+        newTaskTitleinput.setAttribute("maxlength", "30");
 
         newTaskDescriptionLabel.setAttribute("for", "newdescription");
         newTaskDescriptioninput.setAttribute("type", "text");
         newTaskDescriptioninput.setAttribute("name", "newdescription");
         newTaskDescriptioninput.setAttribute("id", "newdescription");
+        newTaskDescriptioninput.setAttribute("minlength", "3");
+        newTaskDescriptioninput.setAttribute("maxlength", "150");
 
         newTaskDueDateLabel.setAttribute("for", "newduedate");
         newTaskDueDateinput.setAttribute("type", "date");
@@ -519,6 +528,9 @@ class DomManipulation{
         newProjecNameinput.setAttribute("type", "text");
         newProjecNameinput.setAttribute("name", "newproject");
         newProjecNameinput.setAttribute("id", "newproject");
+        newProjecNameinput.setAttribute("required", "true");
+        newProjecNameinput.setAttribute("minlength", "3");
+        newProjecNameinput.setAttribute("maxlength", "30");
 
         newProjectSubmitButton.setAttribute("type", "submit");
         newProjectSubmitButton.setAttribute("value", "Add Project");
