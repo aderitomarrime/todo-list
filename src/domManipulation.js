@@ -1,6 +1,7 @@
 import {format} from "date-fns";
-import { findProjectIndex, projects, Project, deleteProject} from "./project.js";
+import {findProjectIndex, projects, Project, deleteProject} from "./project.js";
 import {Task} from "./task.js"
+import {addArrayToLocalStorage, getItemFromLocalStorage } from "./localStorage.js";
 import eyeSvg from "./svg/eye.svg";
 import trashSvg from "./svg/trash.svg";
 import pencilSvg from "./svg/pencil.svg";
@@ -77,6 +78,7 @@ class DomManipulation{
             projectTrash.addEventListener("click", (event)=>{
                 const projectIndex = findProjectIndex(arrayOfProjects, event.target.id)
                 deleteProject(arrayOfProjects, projectIndex);
+                addArrayToLocalStorage(arrayOfProjects);
 
                 if(arrayOfProjects.length > 0) {
                     if(currentProjectIndex == projectIndex) {
@@ -138,6 +140,7 @@ class DomManipulation{
             done.addEventListener("click", (event)=>{
                 const taskIndex = arrayOfProjects[projectIndex].findTaskIndex(event.target.id);
                 arrayOfProjects[projectIndex].tasks[taskIndex].toggleDoneStatus();
+                addArrayToLocalStorage(arrayOfProjects);
             })
 
             eye.addEventListener("click", ()=> {
@@ -148,6 +151,7 @@ class DomManipulation{
             trash.addEventListener("click", (event)=>{
                 const taskIndex = arrayOfProjects[projectIndex].findTaskIndex(event.target.id);
                 arrayOfProjects[projectIndex].deleteTask(taskIndex);
+                addArrayToLocalStorage(arrayOfProjects);
                 taskContainer.remove();
             })
 
@@ -350,6 +354,7 @@ class DomManipulation{
             }
             
             arrayOfProjects[projectIndex].tasks[taskIndex].update(newTitle, newDescription, newDueDateObject, newPriority);
+            addArrayToLocalStorage(arrayOfProjects);
 
             this.listTasks(projectIndex, arrayOfProjects);
     }
@@ -496,6 +501,7 @@ class DomManipulation{
         const newTask = new Task(newTitle, newDescription, newDueDateObject, newPriority, newIsDone);
 
         arrayOfProjects[projectIndex].tasks.push(newTask);
+        addArrayToLocalStorage(arrayOfProjects);
 
         this.listTasks(projectIndex, arrayOfProjects);
     }
@@ -574,6 +580,7 @@ class DomManipulation{
         const newProject = new Project(newProjectName, []);
 
         arrayOfProjects.push(newProject);
+        addArrayToLocalStorage(arrayOfProjects);
 
         this.createProjects(arrayOfProjects);
     }
