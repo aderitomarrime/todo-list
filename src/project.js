@@ -14,7 +14,7 @@ class Project{
     }
 }
 
-const projects = [];
+let projects = [];
 
 function deleteProject(arrayOfProjects, projectIndex) {
     arrayOfProjects.splice(projectIndex, 1);
