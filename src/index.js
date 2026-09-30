@@ -3,6 +3,9 @@ import {Project, projects, deleteProject, findProjectIndex} from "./project.js";
 import {DomManipulation} from "./domManipulation.js";
 import {getItemFromLocalStorage} from "./localStorage.js";
 
+let arrayOfProjects;
+const DomManipulationObject = new DomManipulation();
+
 if(localStorage.getItem("arrayOfProjects")) {
     let arrayOfProjectsFromLocalStorage = getItemFromLocalStorage();
     let newArray = [];
@@ -14,7 +17,6 @@ if(localStorage.getItem("arrayOfProjects")) {
             let newDueDateObject;
             if(task.dueDate != "") {
                 newDueDateObject = new Date(task.dueDate);
-                console.log(newDueDateObject)
             }else {
                 newDueDateObject = task.dueDate;
             }
@@ -24,46 +26,25 @@ if(localStorage.getItem("arrayOfProjects")) {
         indexCount++;
     }
 
-    const DomManipulationObject = new DomManipulation();
-    DomManipulationObject.createEssentials();
-    DomManipulationObject.createAddNewProjectDialog(newArray);
-    DomManipulationObject.createButtonToAddProject();
-    DomManipulationObject.createProjects(newArray);
-    DomManipulationObject.createButtonToAddTasks(0,newArray);
-    DomManipulationObject.listTasks(0,newArray);
-    DomManipulationObject.createInfoDialog();
-    DomManipulationObject.createEditTaskInfoDialog(0, newArray);
-    DomManipulationObject.createAddNewTaskDialog(0, newArray);
+    arrayOfProjects = newArray;
 
 }else{
-    console.log("nao existe");
 
-    projects.push(new Project("default", [new Task("Code", "Code everyday", new Date(2000,0,7), "Hight", false)]));
+    projects.push(new Project("default", [new Task("pushin 🅿️", "365 Days per year, 24 hours per day", new Date(2030,11,31), "Hight", false)]));
 
-    projects[0].tasks.push(new Task("YouTube", "Make Videos", new Date(2025,11,31), "Hight", false));
+    arrayOfProjects = projects;
 
-    projects[0].tasks.push(new Task("YouTube", "Subscribe", new Date(2027,1,23), "Hight", true));
-
-    // Project 2
-    projects.push(new Project("gym", [new Task("Push-ups", "Do it everyday", new Date("1997-1-1"), "Hight", false)]));
-
-    projects[1].tasks.push(new Task("Cardio", "30 min per day", new Date("2025-12-31"), "Medium", false));
-
-    projects[1].tasks.push(new Task("Arms", "30 min per week", new Date("1999-1-1"), "Medium", true));
-
-    const DomManipulationObject = new DomManipulation();
-    DomManipulationObject.createEssentials();
-    DomManipulationObject.createAddNewProjectDialog(projects);
-    DomManipulationObject.createButtonToAddProject();
-    DomManipulationObject.createProjects(projects);
-    DomManipulationObject.createButtonToAddTasks(0,projects);
-    DomManipulationObject.listTasks(0,projects);
-    DomManipulationObject.createInfoDialog();
-    DomManipulationObject.createEditTaskInfoDialog(0, projects);
-    DomManipulationObject.createAddNewTaskDialog(0, projects);
 }
 
-
+DomManipulationObject.createEssentials();
+DomManipulationObject.createAddNewProjectDialog(arrayOfProjects);
+DomManipulationObject.createButtonToAddProject();
+DomManipulationObject.createProjects(arrayOfProjects);
+DomManipulationObject.createButtonToAddTasks(0,arrayOfProjects);
+DomManipulationObject.listTasks(0,arrayOfProjects);
+DomManipulationObject.createInfoDialog();
+DomManipulationObject.createEditTaskInfoDialog(0, arrayOfProjects);
+DomManipulationObject.createAddNewTaskDialog(0, arrayOfProjects);
 
 
 //show 
