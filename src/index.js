@@ -3,8 +3,20 @@ import {Project, projects, deleteProject, findProjectIndex} from "./project.js";
 import {DomManipulation} from "./domManipulation.js";
 import {getItemFromLocalStorage} from "./localStorage.js";
 
-let arrayOfProjects;
-const DomManipulationObject = new DomManipulation();
+function createHtmlStruture(arrayOfProjects){
+    const DomManipulationObject = new DomManipulation();
+    const arrayIndex = 0;
+
+    DomManipulationObject.createEssentials();
+    DomManipulationObject.createAddNewProjectDialog(arrayOfProjects);
+    DomManipulationObject.createButtonToAddProject();
+    DomManipulationObject.createProjects(arrayOfProjects);
+    DomManipulationObject.createButtonToAddTasks(arrayIndex, arrayOfProjects);
+    DomManipulationObject.listTasks(arrayIndex, arrayOfProjects);
+    DomManipulationObject.createInfoDialog();
+    DomManipulationObject.createEditTaskInfoDialog(arrayIndex, arrayOfProjects);
+    DomManipulationObject.createAddNewTaskDialog(arrayIndex, arrayOfProjects);
+}
 
 if(localStorage.getItem("arrayOfProjects")) {
     let arrayOfProjectsFromLocalStorage = getItemFromLocalStorage();
@@ -26,22 +38,14 @@ if(localStorage.getItem("arrayOfProjects")) {
         indexCount++;
     }
 
-    arrayOfProjects = newArray;
+    createHtmlStruture(newArray);
 
 }else{
 
     projects.push(new Project("default", [new Task("pushin 🅿️", "365 Days per year, 24 hours per day", new Date(2030,11,31), "Hight", false)]));
 
-    arrayOfProjects = projects;
+    createHtmlStruture(projects);
 
 }
 
-DomManipulationObject.createEssentials();
-DomManipulationObject.createAddNewProjectDialog(arrayOfProjects);
-DomManipulationObject.createButtonToAddProject();
-DomManipulationObject.createProjects(arrayOfProjects);
-DomManipulationObject.createButtonToAddTasks(0,arrayOfProjects);
-DomManipulationObject.listTasks(0,arrayOfProjects);
-DomManipulationObject.createInfoDialog();
-DomManipulationObject.createEditTaskInfoDialog(0, arrayOfProjects);
-DomManipulationObject.createAddNewTaskDialog(0, arrayOfProjects);
+
