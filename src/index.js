@@ -1,3 +1,5 @@
+import "./style.css";
+
 import {Task} from "./task.js";
 import {Project, projects, deleteProject, findProjectIndex} from "./project.js";
 import {DomManipulation} from "./domManipulation.js";

@@ -1,0 +1,152 @@
+:root {
+    /* font-size (typescale 1.25) */
+    --fs-xs: 0.625rem;
+    --fs-sm: 0.813rem;
+    --fs-md: 1rem;     
+    --fs-lg: 1.25rem;   
+    --fs-xl: 1.563rem;  
+    --fs-2xl: 1.938rem; 
+    --fs-3xl: 2.438rem;  
+    --fs-4xl: 3.063rem;  
+    --fs-5xl: 3.813rem;
+
+    /* Letter-spacing */
+    --ls-xs: 0.02em;
+    --ls-sm: 0.01em;
+    --ls-md: 0;
+    --ls-lg: 0;
+    --ls-xl: 0;
+    --ls-2xl: -0.005em;
+    --ls-3xl: -0.01em;
+    --ls-4xl: -0.015em;
+    --ls-5xl: -0.02em;
+
+    /* Line-height */
+    --lh-xs: 1.4;
+    --lh-sm: 1.45;
+    --lh-md: 1.5;
+    --lh-lg: 1.4;
+    --lh-xl: 1.3;
+    --lh-2xl: 1.25;
+    --lh-3xl: 1.2;
+    --lh-4xl: 1.15;
+    --lh-5xl: 1.1;
+
+    /*Font-weight*/
+    --fw-thin: 100;
+    --fw-extra-light: 200;
+    --fw-light: 300;
+    --fw-regular: 400;
+    --fw-medium: 500;
+    --fw-semi-bold: 600;
+    --fw-bold: 700;
+    --fw-extra-bold: 800;
+    --fw-black: 900;
+
+    /*spacing base*/
+    --espacamento: 0.25rem;
+
+    /*Border-radius*/
+    --br-xs: 0.125rem;
+    --br-sm: 0.25rem;
+    --br-md: 0.375rem;
+    --br-lg: 0.5rem;
+    --br-xl: 0.75rem;
+    --br-2xl: 1rem;
+    --br-3xl: 1.25rem;  
+    --br-4xl: 1.5rem;
+    --br-5xl: 2rem;
+    --br-full: 9999px;
+    --br-circle: 50%;
+
+    /*container width*/
+    --container-3xs: 14rem;
+    --container-2xs: 16rem;
+    --container-xs: 20rem;
+    --container-sm: 30rem;
+    --container-md: 48rem;
+    --container-lg: 64rem;
+    --container-xl: 80rem;
+    --container-2xl: 96rem;
+    --container-3xl: 112rem;
+    --container-full: 100%;
+
+    /*border*/
+    --border: #d8d4cf;
+    --border-20-transparent: color-mix(in srgb, white 20%, transparent);
+    --border-50-transparent: color-mix(in srgb, white 50%, transparent);
+
+    /*colors*/
+    --sage: #8B9A6E;
+    --light-bege: #F7F2EB;
+    --bege: #EAE2D6;
+    --grey: #EEEEEE;
+    --blue: #0055DA;
+    --yellow: #FFD400;
+    --red: #FF0052;
+
+}
+
+html {
+    box-sizing: border-box;
+}
+
+/* 1. Use a more-intuitive box-sizing model */
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+* {
+    padding: 0;
+}
+
+/* 2. Remove default margin */
+*:not(dialog) {
+  margin: 0;
+}
+
+/* 3. Enable keyword animations */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    interpolate-size: allow-keywords;
+  }
+}
+
+body {
+  /* 4. Increase line-height */
+  line-height: 1.5;
+  /* 5. Improve text rendering */
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 6. Improve media defaults */
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* 7. Inherit fonts for form controls */
+input, button, textarea, select {
+  font: inherit;
+}
+
+/* 8. Avoid text overflows */
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+
+/* 9. Improve line wrapping */
+p {
+  text-wrap: pretty;
+}
+h1, h2, h3, h4, h5, h6 {
+  text-wrap: balance;
+}
+
+/*
+  10. Create a root stacking context
+*/
+#root, #__next {
+  isolation: isolate;
+}
+
