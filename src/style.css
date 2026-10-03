@@ -1,4 +1,9 @@
 :root {
+
+    /*font family*/
+    --default-font-family: "Inter", sans-serif;
+    --font-heading: "Montserrat", sans-serif;
+
     /* font-size (typescale 1.25) */
     --fs-xs: 0.625rem;
     --fs-sm: 0.813rem;
