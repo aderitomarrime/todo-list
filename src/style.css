@@ -199,7 +199,7 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   align-items: center;
   background-color: var(--light-bege);
-  box-shadow: 0 2px 2px rgba(0, 6px, 6px, 0.2);
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.05);
 }
 
 .header h1 {
@@ -212,7 +212,89 @@ h1, h2, h3, h4, h5, h6 {
 
 .aside {
   grid-area: aside;
+  padding-block: calc(var(--spacing)*4);
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--spacing)*1.5);
+  background-color: var(--bege);
+  box-shadow: 2px 0px 4px rgba(0, 0, 0, 0.1);
 }
+
+.aside h2 {
+  order: 2;
+  margin-top: calc(var(--spacing)*2);
+  font-size: var(--fs-lg);
+  line-height: var(--lh-lg);
+  letter-spacing: var(--ls-lg);
+  font-weight: var(--fw-semi-bold);
+}
+
+.aside button {
+  order: 1;
+  background-color: transparent;
+  border-radius: var(--br-md);
+  border: none;
+  padding: calc(var(--spacing)*0.5) calc(var(--spacing)*2);
+  background-color: var(--sage);
+  color: var(--white-total);
+  cursor: pointer;
+  transition: ease-in-out .3s all;
+}
+
+.aside button:hover {
+  opacity: 0.9;
+}
+
+.aside button:focus-visible {
+  outline: none;
+}
+
+.aside ul {
+  order: 3;
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--spacing)*1);
+  height: 60vh;
+  overflow-y: auto;
+}
+
+.aside ul li {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--spacing)*2);
+  width: var(--container-full);
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  border-radius: var(--br-sm);
+  padding: 0 calc(var(--spacing)*1);
+}
+
+.aside ul li:hover {
+  background-color: color-mix(in srgb, white 40%, transparent 60%)
+}
+
+.aside ul li span {
+  font-size: var(--fs-md);
+  line-height: var(--lh-md);
+  letter-spacing: var(--ls-md);
+  font-weight: var(--fw-regular);
+  color: var(--txt-black);
+  text-transform: capitalize;
+  flex: 1;
+  cursor: pointer;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.aside ul li img {
+  cursor: pointer;
+}
+
+.aside ul li img:hover {
+  filter: invert(18%) sepia(90%) saturate(7007%) hue-rotate(335deg) brightness(99%) contrast(107%);
+}
+
 
 .main {
   grid-area: main;
