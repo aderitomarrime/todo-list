@@ -90,6 +90,22 @@
   --yellow: #FFD400;
   --red: #FF0052;
 
+  --white-total:#FFFFFF;
+  --white-soft:#FAFAFA;
+  --white-smoky:#F5F5F5;
+  --white-butter:#FFFDF7;
+  --white-snow:#FDFDFD;
+  --white-ice:#F9FAFB;
+  --gray-misty:#EEEEEE;
+  --gray-cloud:#E0E0E0;
+  --gray-silver:#BDBDBD;
+  --gray-bluish:#E2E8F0;
+  --gray-lead:#424242;
+  --gray-graphite:#212121;
+
+  --txt-black: #1a1a1a;
+  --txt-white: #e5e6eb;
+
 }
 
 html {
@@ -156,6 +172,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 body {
+  font-family: var(--default-font-family);
   display: grid;
   min-height: 100dvh;
   grid-template-columns: 200px 1fr;
@@ -163,12 +180,34 @@ body {
   grid-template-areas: 
   "header header"
   "aside main";
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+}
+
+.header,
+.aside,
+.main{
   padding-inline: calc(var(--spacing)*4);
 }
 
 .header {
   grid-area: header;
   height: fit-content;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  background-color: var(--light-bege);
+  box-shadow: 0 2px 2px rgba(0, 6px, 6px, 0.2);
+}
+
+.header h1 {
+  font-size: var(--fs-2xl);
+  line-height: var(--lh-2xl);
+  letter-spacing: var(--ls-2xl);
+  color: var(--txt-black);
+
 }
 
 .aside {
