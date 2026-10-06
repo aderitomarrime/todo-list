@@ -5,6 +5,7 @@ import {addArrayToLocalStorage, getItemFromLocalStorage } from "./localStorage.j
 import eyeSvg from "./svg/eye.svg";
 import trashSvg from "./svg/trash.svg";
 import pencilSvg from "./svg/pencil.svg";
+import calendarSvg from "./svg/calendar.svg";
 
 class DomManipulation{
 
@@ -15,23 +16,35 @@ class DomManipulation{
     myTitle;
     projectsTitle;
     projectList;
+    todoTitle;
 
     createEssentials(){
         this.myHeader = document.createElement("div");
         this.myAside = document.createElement("div");
         this.myMain = document.createElement("div");
+        this.mainHeader = document.createElement("div");
+        this.todoTitle = document.createElement("div");
+        this.calendar = document.createElement("img");
+        this.todoText = document.createElement("h2");
+        this.buttonContainer = document.createElement("div");
         this.allTasks = document.createElement("div");
         this.myTitle = document.createElement("h1");
         this.projectsTitle = document.createElement("h2");
         this.projectList = document.createElement("ul");
 
-        this.myTitle.textContent = "Todo-list";
+        this.myTitle.textContent = "Todo-List";
         this.projectsTitle.textContent = "Projects";
+        this.todoText.textContent = "To-Do"
 
         this.myHeader.classList.add("header");
         this.myAside.classList.add("aside");
         this.myMain.classList.add("main");
+        this.mainHeader.classList.add("main-header");
+        this.todoTitle.classList.add("todo-title");
+        this.buttonContainer.classList.add("button-container");
         this.allTasks.classList.add("all-tasks");
+
+        this.calendar.setAttribute("src", `${calendarSvg}`);
 
         this.body.appendChild(this.myHeader);
         this.body.appendChild(this.myAside);
@@ -39,6 +52,11 @@ class DomManipulation{
         this.myHeader.appendChild(this.myTitle);
         this.myAside.appendChild(this.projectsTitle);
         this.myAside.appendChild(this.projectList);
+        this.myMain.appendChild(this.mainHeader);
+        this.mainHeader.appendChild(this.todoTitle);
+        this.mainHeader.appendChild(this.buttonContainer);
+        this.todoTitle.appendChild(this.calendar);
+        this.todoTitle.appendChild(this.todoText);
     }
 
     createProjects(arrayOfProjects){
@@ -94,8 +112,8 @@ class DomManipulation{
     }
 
     listTasks(projectIndex, arrayOfProjects){
-        this.myMain.appendChild(this.allTasks);
         this.allTasks.innerHTML = '';
+        this.myMain.appendChild(this.allTasks);
 
         arrayOfProjects[projectIndex].tasks.forEach((task)=>{
             
@@ -360,11 +378,12 @@ class DomManipulation{
     }
 
     createButtonToAddTasks(projectIndex, arrayOfProjects){
-        this.myMain.innerHTML = '';
+        this.buttonContainer.innerHTML = '';
+
         const addButton =document.createElement("button");
         addButton.textContent = "New Task";
         addButton.setAttribute("data-id", `${arrayOfProjects[projectIndex].id}`);
-        this.myMain.appendChild(addButton);
+        this.buttonContainer.appendChild(addButton);
 
         addButton.addEventListener("click", ()=>{
             this.newTaskModal.showModal();
