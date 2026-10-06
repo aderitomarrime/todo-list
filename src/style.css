@@ -241,11 +241,13 @@ h1, h2, h3, h4, h5, h6 {
   transition: ease-in-out .3s all;
 }
 
-.aside button:hover {
+.aside button:hover,
+.main button:hover {
   opacity: 0.9;
 }
 
-.aside button:focus-visible {
+.aside button:focus-visible,
+.main button:focus-visible {
   outline: none;
 }
 
@@ -298,4 +300,31 @@ h1, h2, h3, h4, h5, h6 {
 
 .main {
   grid-area: main;
+  padding-block: calc(var(--spacing)*4);
+  background-color: var(--white-soft);
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--spacing)*4);
+}
+
+.main button {
+  align-self: flex-end;
+  background-color: transparent;
+  border-radius: var(--br-md);
+  border: none;
+  padding: calc(var(--spacing)*0.5) calc(var(--spacing)*10);
+  background-color: var(--sage);
+  color: var(--white-total);
+  cursor: pointer;
+  transition: ease-in-out .3s all;
+}
+
+.main .all-tasks {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--spacing)*2);
+}
+
+.main .all-tasks div {
+  background-color: var(--gray-misty);
 }
