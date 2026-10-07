@@ -268,6 +268,9 @@ class DomManipulation{
     createEditTaskInfoDialog(projectIndex, arrayOfProjects){
         this.editModal= document.createElement("dialog");
         const editForm = document.createElement("form");
+        const editTaskTitleConatiner = document.createElement("div");
+        const editTaskControllersConatiner = document.createElement("div");
+        const editTaskButtonConatiner = document.createElement("div");
         const editTitle = document.createElement("h1");
         const editParagraph = document.createElement("p");
         const editTitleLabel = document.createElement("label");
@@ -298,6 +301,10 @@ class DomManipulation{
 
         this.editModal.setAttribute("closedby", "any");
         this.editModal.setAttribute("id", "editModal");
+
+        editTaskTitleConatiner.setAttribute("class", "title");
+        editTaskControllersConatiner.setAttribute("class", "controller");
+        editTaskButtonConatiner.setAttribute("class", "button");
 
         editTitleLabel.setAttribute("for", "title");
         editTitleinput.setAttribute("type", "text");
@@ -337,22 +344,25 @@ class DomManipulation{
 
         this.body.appendChild(this.editModal);
         this.editModal.appendChild(editForm);
-        editForm.appendChild(editTitle);
-        editForm.appendChild(editParagraph);
-        editForm.appendChild(editTitleLabel);
-        editForm.appendChild(editTitleinput);
-        editForm.appendChild(editDescriptionLabel);
-        editForm.appendChild(editDescriptioninput);
-        editForm.appendChild(editDueDateLabel);
-        editForm.appendChild(editDueDateinput);
-        editForm.appendChild(editPriorityLabel);
-        editForm.appendChild(editPrioritySelect);
+        editForm.appendChild(editTaskTitleConatiner);
+        editForm.appendChild(editTaskControllersConatiner);
+        editTaskTitleConatiner.appendChild(editTitle);
+        editTaskTitleConatiner.appendChild(editParagraph);
+        editTaskControllersConatiner.appendChild(editTitleLabel);
+        editTaskControllersConatiner.appendChild(editTitleinput);
+        editTaskControllersConatiner.appendChild(editDescriptionLabel);
+        editTaskControllersConatiner.appendChild(editDescriptioninput);
+        editTaskControllersConatiner.appendChild(editDueDateLabel);
+        editTaskControllersConatiner.appendChild(editDueDateinput);
+        editTaskControllersConatiner.appendChild(editPriorityLabel);
+        editTaskControllersConatiner.appendChild(editPrioritySelect);
         editPrioritySelect.appendChild(editPriorityoption0);
         editPrioritySelect.appendChild(editPriorityoption1);
         editPrioritySelect.appendChild(editPriorityoption2);
         editPrioritySelect.appendChild(editPriorityoption3);
-        editForm.appendChild(editCancelButton);
-        editForm.appendChild(editSubmitButton);
+        editForm.appendChild(editTaskButtonConatiner);
+        editTaskButtonConatiner.appendChild(editCancelButton);
+        editTaskButtonConatiner.appendChild(editSubmitButton);
 
         editCancelButton.addEventListener("click", ()=>{
             this.editModal.close()

@@ -418,29 +418,36 @@ h1, h2, h3, h4, h5, h6 {
   filter: brightness(0) saturate(100%) invert(20%) sepia(85%) saturate(3892%) hue-rotate(213deg) brightness(89%) contrast(100%);
 }
 
-#newTaskModal {
+#newTaskModal,
+#editModal {
   outline: none;
   border: none;
   border-radius: var(--br-lg);
+  max-width: 400px;
+  width: 100%;
 }
 
-#newTaskModal::backdrop {
+#newTaskModal::backdrop,
+#editModal::backdrop {
   background-color: rgba(0, 0, 0, 0.3);
 }
 
-#newTaskModal form {
+#newTaskModal form,
+#editModal form {
   display: flex;
   flex-direction: column;
   gap: calc(var(--spacing)*4);
   padding: calc(var(--spacing)*4);
 }
 
-#newTaskModal form .title{
+#newTaskModal form .title,
+#editModal form .title{
   display: flex;
   flex-direction: column;
 }
 
-#newTaskModal form .title h1 {
+#newTaskModal form .title h1,
+#editModal form .title h1 {
   color: var(--txt-black);
   font-size: var(--fs-2xl);
   line-height: var(--lh-2xl);
@@ -448,7 +455,8 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: var(--fw-semi-bold);
 }
 
-#newTaskModal form .title p {
+#newTaskModal form .title p,
+#editModal form .title p {
   color: color-mix(in srgb, white, var(--txt-black) 80%);
   font-size: var(--fs-md);
   line-height: var(--lh-md);
@@ -456,13 +464,16 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: var(--fw-regular);
 }
 
-#newTaskModal form .controller{
+#newTaskModal form .controller,
+#editModal form .controller {
   display: flex;
   flex-direction: column;
 }
 
 #newTaskModal form .controller input,
-#newTaskModal form .controller select {
+#newTaskModal form .controller select,
+#editModal form .controller input,
+#editModal form .controller select {
   margin-bottom: calc(var(--spacing)*1.5);
   border-radius: var(--br-md);
   outline: none;
@@ -483,27 +494,32 @@ h1, h2, h3, h4, h5, h6 {
   
 }
 
-#newTaskModal form .controller input:focus {
+#newTaskModal form .controller input:focus,
+#editModal form .controller input:focus {
   outline: none;
   border-color: var(--blue);
   box-shadow: 0 0 0 2px rgba(28, 31, 211, 0.2);
 }
 
-#newTaskModal form .button {
+#newTaskModal form .button,
+#editModal form .button {
   display: flex;
   gap: calc(var(--spacing)*2);
   margin-top: calc(var(--spacing)*2);
 }
 
-#newTaskModal form .button * {
+#newTaskModal form .button *,
+#editModal form .button * {
   flex: 1;
 }
 
-#newTaskModal form .button input:first-of-type {
+#newTaskModal form .button input:first-of-type,
+#editModal form .button input:first-of-type {
   background-color: var(--red);
 }
 
-#newTaskModal form .button input{
+#newTaskModal form .button input,
+#editModal form .button input {
   border: none;
   color: var(--white-total);
   font-size: var(--fs-md);
@@ -511,5 +527,13 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: var(--ls-md);
   font-weight: var(--fw-semi-bold);
   background-color: var(--sage);
+  border-radius: var(--br-md);
+  cursor: pointer;
+  transition: .2s ease-in-out;
+}
+
+#newTaskModal form .button input:hover,
+#editModal form .button input:hover {
+  opacity: 0.8;
 }
 
