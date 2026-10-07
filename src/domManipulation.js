@@ -197,7 +197,7 @@ class DomManipulation{
             if(task.dueDate != "") {
                 titleContainer.appendChild(dueDate);
             }
-            
+
             iconsContainer.appendChild(eye);
             iconsContainer.appendChild(pencil);
             iconsContainer.appendChild(trash);
@@ -406,6 +406,9 @@ class DomManipulation{
     createAddNewTaskDialog(projectIndex, arrayOfProjects){
         this.newTaskModal= document.createElement("dialog");
         const newTaskForm = document.createElement("form");
+        const newTaskTitleConatiner = document.createElement("div");
+        const newTaskControllersConatiner = document.createElement("div");
+        const newTaskButtonConatiner = document.createElement("div");
         const newTaskTitle = document.createElement("h1");
         const newTaskParagraph = document.createElement("p");
         const newTaskTitleLabel = document.createElement("label");
@@ -437,6 +440,10 @@ class DomManipulation{
 
         this.newTaskModal.setAttribute("closedby", "any");
         this.newTaskModal.setAttribute("id", "newTaskModal");
+
+        newTaskTitleConatiner.setAttribute("class", "title");
+        newTaskControllersConatiner.setAttribute("class", "controller");
+        newTaskButtonConatiner.setAttribute("class", "button");
 
         newTaskTitleLabel.setAttribute("for", "newtitle");
         newTaskTitleinput.setAttribute("type", "text");
@@ -482,23 +489,26 @@ class DomManipulation{
 
         this.body.appendChild(this.newTaskModal);
         this.newTaskModal.appendChild(newTaskForm);
-        newTaskForm.appendChild(newTaskTitle);
-        newTaskForm.appendChild(newTaskParagraph);
-        newTaskForm.appendChild(newTaskTitleLabel);
-        newTaskForm.appendChild(newTaskTitleinput);
-        newTaskForm.appendChild(newTaskDescriptionLabel);
-        newTaskForm.appendChild(newTaskDescriptioninput);
-        newTaskForm.appendChild(newTaskDueDateLabel);
-        newTaskForm.appendChild(newTaskDueDateinput);
-        newTaskForm.appendChild(newTaskPriorityLabel);
-        newTaskForm.appendChild(newTaskPrioritySelect);
+        newTaskForm.appendChild(newTaskTitleConatiner);
+        newTaskForm.appendChild(newTaskControllersConatiner);
+        newTaskTitleConatiner.appendChild(newTaskTitle);
+        newTaskTitleConatiner.appendChild(newTaskParagraph);
+        newTaskControllersConatiner.appendChild(newTaskTitleLabel);
+        newTaskControllersConatiner.appendChild(newTaskTitleinput);
+        newTaskControllersConatiner.appendChild(newTaskDescriptionLabel);
+        newTaskControllersConatiner.appendChild(newTaskDescriptioninput);
+        newTaskControllersConatiner.appendChild(newTaskDueDateLabel);
+        newTaskControllersConatiner.appendChild(newTaskDueDateinput);
+        newTaskControllersConatiner.appendChild(newTaskPriorityLabel);
+        newTaskControllersConatiner.appendChild(newTaskPrioritySelect);
         newTaskPrioritySelect.appendChild(newTaskPriorityoption1);
         newTaskPrioritySelect.appendChild(newTaskPriorityoption2);
         newTaskPrioritySelect.appendChild(newTaskPriorityoption3);
-        newTaskForm.appendChild(newTaskTDoneLabel);
-        newTaskForm.appendChild(newTaskTDoneinput);
-        newTaskForm.appendChild(newTaskCancelButton);
-        newTaskForm.appendChild(newTaskSubmitButton);
+        newTaskControllersConatiner.appendChild(newTaskTDoneLabel);
+        newTaskControllersConatiner.appendChild(newTaskTDoneinput);
+        newTaskControllersConatiner.appendChild(newTaskButtonConatiner);
+        newTaskButtonConatiner.appendChild(newTaskCancelButton);
+        newTaskButtonConatiner.appendChild(newTaskSubmitButton);
 
         newTaskCancelButton.addEventListener("click", ()=>{
             this.newTaskModal.close();

@@ -207,7 +207,6 @@ h1, h2, h3, h4, h5, h6 {
   line-height: var(--lh-2xl);
   letter-spacing: var(--ls-2xl);
   color: var(--txt-black);
-
 }
 
 .aside {
@@ -227,6 +226,7 @@ h1, h2, h3, h4, h5, h6 {
   line-height: var(--lh-lg);
   letter-spacing: var(--ls-lg);
   font-weight: var(--fw-semi-bold);
+  color: var(--txt-black);
 }
 
 .aside button {
@@ -287,6 +287,7 @@ h1, h2, h3, h4, h5, h6 {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+  color: var(--txt-black);
 }
 
 .aside ul li img {
@@ -337,6 +338,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .main .main-header .todo-title h2 {
+  color: var(--txt-black);
   font-size: var(--fs-lg);
   line-height: var(--lh-lg);
   letter-spacing: var(--ls-lg);
@@ -384,9 +386,11 @@ h1, h2, h3, h4, h5, h6 {
   line-height: var(--lh-2xl);
   letter-spacing: var(--ls-2xl);
   font-weight: var(--fw-semi-bold);
+  color: var(--txt-black);
 }
 
 .main .all-tasks > div .title-container p {
+  color: var(--txt-black);
   font-size: var(--fs-md);
   line-height: var(--lh-md);
   letter-spacing: var(--ls-md);
@@ -412,5 +416,100 @@ h1, h2, h3, h4, h5, h6 {
 
 .main .all-tasks > div .icons-container img:hover {
   filter: brightness(0) saturate(100%) invert(20%) sepia(85%) saturate(3892%) hue-rotate(213deg) brightness(89%) contrast(100%);
+}
+
+#newTaskModal {
+  outline: none;
+  border: none;
+  border-radius: var(--br-lg);
+}
+
+#newTaskModal::backdrop {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+#newTaskModal form {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--spacing)*4);
+  padding: calc(var(--spacing)*4);
+}
+
+#newTaskModal form .title{
+  display: flex;
+  flex-direction: column;
+}
+
+#newTaskModal form .title h1 {
+  color: var(--txt-black);
+  font-size: var(--fs-2xl);
+  line-height: var(--lh-2xl);
+  letter-spacing: var(--ls-2xl);
+  font-weight: var(--fw-semi-bold);
+}
+
+#newTaskModal form .title p {
+  color: color-mix(in srgb, white, var(--txt-black) 80%);
+  font-size: var(--fs-md);
+  line-height: var(--lh-md);
+  letter-spacing: var(--ls-md);
+  font-weight: var(--fw-regular);
+}
+
+#newTaskModal form .controller{
+  display: flex;
+  flex-direction: column;
+}
+
+#newTaskModal form .controller input,
+#newTaskModal form .controller select {
+  margin-bottom: calc(var(--spacing)*1.5);
+  border-radius: var(--br-md);
+  outline: none;
+  border: 1.5px solid  var(--border);
+  padding: calc(var(--spacing)*0.5) calc(var(--spacing)*1.5);
+  color: color-mix(in srgb, white, var(--txt-black) 80%);
+  font-size: var(--fs-sm);
+  line-height: var(--lh-sm);
+  letter-spacing: var(--ls-sm);
+  font-weight: var(--fw-regular);
+}
+
+#newTaskModal form .controller input[type="checkbox"] {
+  align-self: flex-start;
+  width: calc(var(--spacing)*6);
+  height: calc(var(--spacing)*6);
+  accent-color: var(--sage);
+  
+}
+
+#newTaskModal form .controller input:focus {
+  outline: none;
+  border-color: var(--blue);
+  box-shadow: 0 0 0 2px rgba(28, 31, 211, 0.2);
+}
+
+#newTaskModal form .button {
+  display: flex;
+  gap: calc(var(--spacing)*2);
+  margin-top: calc(var(--spacing)*2);
+}
+
+#newTaskModal form .button * {
+  flex: 1;
+}
+
+#newTaskModal form .button input:first-of-type {
+  background-color: var(--red);
+}
+
+#newTaskModal form .button input{
+  border: none;
+  color: var(--white-total);
+  font-size: var(--fs-md);
+  line-height: var(--lh-md);
+  letter-spacing: var(--ls-md);
+  font-weight: var(--fw-semi-bold);
+  background-color: var(--sage);
 }
 
