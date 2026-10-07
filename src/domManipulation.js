@@ -118,6 +118,9 @@ class DomManipulation{
         arrayOfProjects[projectIndex].tasks.forEach((task)=>{
             
             const taskContainer = document.createElement("div");
+            const checkContainer = document.createElement("div");
+            const titleContainer = document.createElement("div");
+            const iconsContainer = document.createElement("div");
             const eye = document.createElement("img");
             const trash = document.createElement("img");
             const pencil = document.createElement("img");
@@ -135,6 +138,10 @@ class DomManipulation{
             trash.setAttribute("id", `${task.id}`);
             pencil.setAttribute("id", `${task.id}`);
 
+            checkContainer.setAttribute("class", "check-container");
+            titleContainer.setAttribute("class", "title-container");
+            iconsContainer.setAttribute("class", "icons-container");
+
             title.textContent = task.title;
             description.textContent = task.description;
 
@@ -144,7 +151,7 @@ class DomManipulation{
                 dueDateFormated = task.dueDate;
             }
             
-            dueDate.textContent = dueDateFormated;
+            dueDate.textContent = `Due date: ${dueDateFormated}`;
 
             priority.textContent = task.priority;
             eye.src = `${eyeSvg}`;
@@ -180,14 +187,16 @@ class DomManipulation{
             })
 
             this.allTasks.appendChild(taskContainer);
-            taskContainer.appendChild(title);
-            taskContainer.appendChild(description);
-            taskContainer.appendChild(dueDate);
-            taskContainer.appendChild(priority);
-            taskContainer.appendChild(done);
-            taskContainer.appendChild(eye);
-            taskContainer.appendChild(pencil);
-            taskContainer.appendChild(trash);
+            taskContainer.appendChild(checkContainer);
+            taskContainer.appendChild(titleContainer);
+            taskContainer.appendChild(iconsContainer);
+
+            checkContainer.appendChild(done);
+            titleContainer.appendChild(title);
+            titleContainer.appendChild(dueDate);
+            iconsContainer.appendChild(eye);
+            iconsContainer.appendChild(pencil);
+            iconsContainer.appendChild(trash);
         })
     }
 
