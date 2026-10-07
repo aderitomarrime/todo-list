@@ -193,7 +193,11 @@ class DomManipulation{
 
             checkContainer.appendChild(done);
             titleContainer.appendChild(title);
-            titleContainer.appendChild(dueDate);
+
+            if(task.dueDate != "") {
+                titleContainer.appendChild(dueDate);
+            }
+            
             iconsContainer.appendChild(eye);
             iconsContainer.appendChild(pencil);
             iconsContainer.appendChild(trash);
