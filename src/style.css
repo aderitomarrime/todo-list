@@ -319,6 +319,30 @@ h1, h2, h3, h4, h5, h6 {
   transition: ease-in-out .3s all;
 }
 
+.main .main-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.main .main-header .todo-title {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--spacing)*2);
+}
+
+.main .main-header .todo-title img {
+  width: calc(var(--spacing)*6);
+  height: calc(var(--spacing)*6);
+}
+
+.main .main-header .todo-title h2 {
+  font-size: var(--fs-lg);
+  line-height: var(--lh-lg);
+  letter-spacing: var(--ls-lg);
+  font-weight: var(--fw-medium);
+}
+
 .main .all-tasks {
   display: flex;
   flex-direction: column;
