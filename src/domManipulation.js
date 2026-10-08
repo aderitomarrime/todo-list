@@ -208,6 +208,9 @@ class DomManipulation{
         this.infoModal = document.createElement("dialog");
         const closeInfoModal = document.createElement("button");
 
+        const topContainer = document.createElement("div");
+        const bottomContainer = document.createElement("div");
+
         const titleModal = document.createElement("h1");
         const descriptionModal = document.createElement("p");
         const dueDateModal = document.createElement("p");
@@ -219,12 +222,17 @@ class DomManipulation{
         this.infoModal.setAttribute("closedby", "any");
         this.infoModal.setAttribute("id", "infoModal");
 
+        topContainer.classList.add("top");
+        bottomContainer.classList.add("bottom");
+
         this.body.appendChild(this.infoModal);
-        this.infoModal.appendChild(titleModal);
-        this.infoModal.appendChild(descriptionModal);
-        this.infoModal.appendChild(dueDateModal);
-        this.infoModal.appendChild(priorityModal);
-        this.infoModal.appendChild(doneModal);
+        this.infoModal.appendChild(topContainer);
+        this.infoModal.appendChild(bottomContainer);
+        topContainer.appendChild(titleModal);
+        topContainer.appendChild(descriptionModal);
+        bottomContainer.appendChild(dueDateModal);
+        bottomContainer.appendChild(priorityModal);
+        bottomContainer.appendChild(doneModal);
         this.infoModal.appendChild(closeInfoModal);
 
         closeInfoModal.addEventListener("click", ()=>{
@@ -234,11 +242,11 @@ class DomManipulation{
 
     updateInfoDialog(task){
 
-        const titleModal = document.querySelector("#infoModal h1");
-        const descriptionModal = document.querySelector("#infoModal p:nth-of-type(1)");
-        const dueDateModal = document.querySelector("#infoModal p:nth-of-type(2)");
-        const priorityModal = document.querySelector("#infoModal p:nth-of-type(3)");
-        const doneModal = document.querySelector("#infoModal p:nth-of-type(4)");
+        const titleModal = document.querySelector("#infoModal .top h1");
+        const descriptionModal = document.querySelector("#infoModal .top p");
+        const dueDateModal = document.querySelector("#infoModal .bottom p:nth-of-type(1)");
+        const priorityModal = document.querySelector("#infoModal .bottom p:nth-of-type(2)");
+        const doneModal = document.querySelector("#infoModal .bottom p:nth-of-type(3)");
 
         if(task.title != ""){
             titleModal.textContent =  `${task.title}`;
@@ -246,7 +254,7 @@ class DomManipulation{
             titleModal.textContent =  ``;
         }
         if(task.description != ""){
-            descriptionModal.textContent =  `Description: ${task.description}`;
+            descriptionModal.textContent =  `${task.description}`;
         }else{
             descriptionModal.textContent =  ``;
         }
@@ -261,7 +269,7 @@ class DomManipulation{
         }else{
             priorityModal.textContent = ``;
         }
-        doneModal.textContent = "Done: "+ `${task.done ? "Yes": "No"}`;
+        doneModal.textContent = "Status: "+ `${task.done ? "Done": "Not done"}`;
         
     }
 
