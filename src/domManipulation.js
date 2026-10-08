@@ -572,6 +572,9 @@ class DomManipulation{
     createAddNewProjectDialog(arrayOfProjects){
         this.newProjectModal= document.createElement("dialog");
         const newProjectForm = document.createElement("form");
+        const newProjectTitleConatiner = document.createElement("div");
+        const newProjectControllersConatiner = document.createElement("div");
+        const newProjectButtonConatiner = document.createElement("div");
         const newProjectTitle = document.createElement("h1");
         const newProjectParagraph = document.createElement("p");
         const newProjecNameLabel = document.createElement("label");
@@ -586,6 +589,10 @@ class DomManipulation{
 
         this.newProjectModal.setAttribute("closedby", "any");
         this.newProjectModal.setAttribute("id", "newProjectModal");
+
+        newProjectTitleConatiner.setAttribute("class", "title");
+        newProjectControllersConatiner.setAttribute("class", "controller");
+        newProjectButtonConatiner.setAttribute("class", "button");
 
         newProjecNameLabel.setAttribute("for", "newproject");
         newProjecNameinput.setAttribute("type", "text");
@@ -605,12 +612,15 @@ class DomManipulation{
 
         this.body.appendChild(this.newProjectModal);
         this.newProjectModal.appendChild(newProjectForm);
-        newProjectForm.appendChild(newProjectTitle);
-        newProjectForm.appendChild(newProjectParagraph);
-        newProjectForm.appendChild(newProjecNameLabel);
-        newProjectForm.appendChild(newProjecNameinput);
-        newProjectForm.appendChild(newCancelProjectButton);
-        newProjectForm.appendChild(newProjectSubmitButton);
+        newProjectForm.appendChild(newProjectTitleConatiner);
+        newProjectForm.appendChild(newProjectControllersConatiner);
+        newProjectForm.appendChild(newProjectButtonConatiner);
+        newProjectTitleConatiner.appendChild(newProjectTitle);
+        newProjectTitleConatiner.appendChild(newProjectParagraph);
+        newProjectControllersConatiner.appendChild(newProjecNameLabel);
+        newProjectControllersConatiner.appendChild(newProjecNameinput);
+        newProjectButtonConatiner.appendChild(newCancelProjectButton);
+        newProjectButtonConatiner.appendChild(newProjectSubmitButton);
 
 
         newCancelProjectButton.addEventListener("click", ()=>{

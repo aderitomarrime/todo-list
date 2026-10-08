@@ -419,7 +419,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #newTaskModal,
-#editModal {
+#editModal,
+#newProjectModal {
   outline: none;
   border: none;
   border-radius: var(--br-lg);
@@ -428,26 +429,34 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #newTaskModal::backdrop,
-#editModal::backdrop {
+#editModal::backdrop,
+#newProjectModal::backdrop {
   background-color: rgba(0, 0, 0, 0.3);
 }
 
 #newTaskModal form,
-#editModal form {
+#editModal form,
+#newProjectModal form {
   display: flex;
   flex-direction: column;
   gap: calc(var(--spacing)*4);
   padding: calc(var(--spacing)*4);
 }
 
+#newProjectModal form {
+  gap: calc(var(--spacing)*2.5);
+}
+
 #newTaskModal form .title,
-#editModal form .title{
+#editModal form .title,
+#newProjectModal .title {
   display: flex;
   flex-direction: column;
 }
 
 #newTaskModal form .title h1,
-#editModal form .title h1 {
+#editModal form .title h1,
+#newProjectModal form .title h1 {
   color: var(--txt-black);
   font-size: var(--fs-2xl);
   line-height: var(--lh-2xl);
@@ -456,7 +465,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #newTaskModal form .title p,
-#editModal form .title p {
+#editModal form .title p,
+#newProjectModal form .title p {
   color: color-mix(in srgb, white, var(--txt-black) 80%);
   font-size: var(--fs-md);
   line-height: var(--lh-md);
@@ -465,7 +475,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #newTaskModal form .controller,
-#editModal form .controller {
+#editModal form .controller,
+#newProjectModal form .controller {
   display: flex;
   flex-direction: column;
 }
@@ -473,7 +484,8 @@ h1, h2, h3, h4, h5, h6 {
 #newTaskModal form .controller input,
 #newTaskModal form .controller select,
 #editModal form .controller input,
-#editModal form .controller select {
+#editModal form .controller select,
+#newProjectModal form .controller input {
   margin-bottom: calc(var(--spacing)*1.5);
   border-radius: var(--br-md);
   outline: none;
@@ -495,14 +507,16 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #newTaskModal form .controller input:focus,
-#editModal form .controller input:focus {
+#editModal form .controller input:focus,
+#newProjectModal form .controller input:focus {
   outline: none;
   border-color: var(--blue);
   box-shadow: 0 0 0 2px rgba(28, 31, 211, 0.2);
 }
 
 #newTaskModal form .button,
-#editModal form .button {
+#editModal form .button,
+#newProjectModal form .button {
   display: flex;
   gap: calc(var(--spacing)*2);
   margin-top: calc(var(--spacing)*2);
@@ -519,7 +533,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #newTaskModal form .button input,
-#editModal form .button input {
+#editModal form .button input,
+#newProjectModal form .button input {
   border: none;
   color: var(--white-total);
   font-size: var(--fs-md);
@@ -533,7 +548,41 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #newTaskModal form .button input:hover,
-#editModal form .button input:hover {
+#editModal form .button input:hover,
+#newProjectModal .button input:hover,
+#newProjectModal .button button:hover {
   opacity: 0.8;
+}
+
+#newProjectModal form .button input {
+  padding: calc(var(--spacing)*0.5) calc(var(--spacing)*10);
+  flex: 1;
+}
+
+#newProjectModal {
+  position: relative;
+  padding-top: calc(var(--spacing)*6);
+}
+
+#newProjectModal .button button {
+  position: absolute;
+  top: calc(var(--spacing)*2);
+  right: calc(var(--spacing)*2);
+  padding: calc(var(--spacing)*5);
+  width: calc(var(--spacing)*6);
+  height: calc(var(--spacing)*6);
+  border-radius: var(--br-full);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white-total);
+  font-size: var(--fs-md);
+  line-height: var(--lh-md);
+  letter-spacing: var(--ls-md);
+  font-weight: var(--fw-semi-bold);
+  background-color: var(--red);
+  cursor: pointer;
+  transition: .2s ease-in-out;
 }
 
