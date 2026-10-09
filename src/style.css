@@ -193,13 +193,16 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .header {
+  position: sticky;
+  top: 0;
   grid-area: header;
   height: fit-content;
   height: 100%;
   display: flex;
   align-items: center;
-  background-color: var(--light-bege);
+  background-color: color-mix(in srgb, transparent, var(--light-bege) 80%);
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(5px);
 }
 
 .header h1 {
@@ -210,6 +213,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .aside {
+  position: sticky;
+  top: 80px;
+  height: calc(100dvh - 80px);
   grid-area: aside;
   padding-block: calc(var(--spacing)*4);
   display: flex;
@@ -259,6 +265,9 @@ h1, h2, h3, h4, h5, h6 {
   gap: calc(var(--spacing)*1);
   height: 60vh;
   overflow-y: auto;
+  scrollbar-width: thin;
+  scroll-behavior: smooth;
+  scrollbar-color: var(--sage) color-mix(in srgb, white 40%, transparent);
 }
 
 .aside ul li {
@@ -563,7 +572,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #newProjectModal {
-  position: relative;
   padding-top: calc(var(--spacing)*6);
 }
 
