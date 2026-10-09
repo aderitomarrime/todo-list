@@ -6,6 +6,8 @@ import eyeSvg from "./svg/eye.svg";
 import trashSvg from "./svg/trash.svg";
 import pencilSvg from "./svg/pencil.svg";
 import calendarSvg from "./svg/calendar.svg";
+import list from "./svg/list.svg";
+import xLg from "./svg/x-lg.svg";
 
 class DomManipulation{
 
@@ -653,6 +655,27 @@ class DomManipulation{
         addArrayToLocalStorage(arrayOfProjects);
 
         this.createProjects(arrayOfProjects);
+    }
+
+    CreateButtonsToControlTheAside() {
+        const headerContainer = document.querySelector(".header");
+
+        const buttonsContainer = document.createElement("div");
+        const burguerButton = document.createElement("button");
+        const closeButton = document.createElement("button");
+        const listIcon = document.createElement("img");
+        const closeIcon = document.createElement("img");
+
+        listIcon.setAttribute("src", `${list}`);
+        closeIcon.setAttribute("src", `${xLg}`);
+
+        buttonsContainer.setAttribute("class", "buttons");
+        listIcon.setAttribute("class", "list");
+        listIcon.setAttribute("class", "close");
+
+        headerContainer.appendChild(buttonsContainer);
+        buttonsContainer.appendChild(listIcon);
+        buttonsContainer.appendChild(closeIcon);
     }
 
 }

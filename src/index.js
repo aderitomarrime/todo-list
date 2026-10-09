@@ -10,6 +10,7 @@ function createHtmlStruture(arrayOfProjects){
     const arrayIndex = 0;
 
     DomManipulationObject.createEssentials();
+    DomManipulationObject.CreateButtonsToControlTheAside();
     DomManipulationObject.createAddNewProjectDialog(arrayOfProjects);
     DomManipulationObject.createButtonToAddProject();
     DomManipulationObject.createProjects(arrayOfProjects);
