@@ -207,14 +207,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .header .buttons {
-  display: flex;
+  display: none;
   align-items: center;
   gap: calc(var(--spacing)*1);
 }
 
 .header .buttons img {
-  width: calc(var(--spacing)*8);
-  height: calc(var(--spacing)*8);
+  width: calc(var(--spacing)*10);
+  height: calc(var(--spacing)*10);
   padding: calc(var(--spacing)*1);
   cursor: pointer;
 }
@@ -267,7 +267,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .aside button:focus-visible,
-.main button:focus-visible {
+.main button:focus-visible,
+#infoModal .bottom button:focus-visible,
+#newProjectModal .button button:focus-visible {
   outline: none;
 }
 
@@ -635,5 +637,61 @@ h1, h2, h3, h4, h5, h6 {
   line-height: var(--lh-md);
   letter-spacing: var(--ls-md);
   font-weight: var(--fw-regular);
+}
+
+@media (max-width:880px) {
+  html {
+    font-size: 90%;
+  }
+}
+
+@media (max-width:660px) {
+  html {
+    font-size: 85%;
+  }
+
+  .header .buttons {
+    display: flex;
+  }
+
+  .header .buttons img:last-child {
+    display: none;
+  }
+
+  body {
+    grid-template-columns: 1fr;
+    grid-template-rows: 80px auto;
+    grid-template-areas: 
+    "header"
+    "main";
+  }
+
+  .aside {
+    width: 50%;
+    grid-area: none;
+    position: absolute;
+    left: -100%;
+    transition: ease-in-out .3s;
+  }
+
+  .main .all-tasks {
+    grid-template-columns: 1fr;
+  }
+
+  .main {
+    padding-top: calc(var(--spacing) * 8);
+    gap: calc(var(--spacing) * 8);
+  }
+
+  .main .all-tasks > div .icons-container {
+    gap: calc(var(--spacing) * 0.5);
+  }
+
+  .main .all-tasks > div .icons-container img {
+    width: calc(var(--spacing) * 10);
+    height: calc(var(--spacing) * 10);
+    padding: calc(var(--spacing) * 2);
+    cursor: pointer;
+  }
 }
 
