@@ -671,11 +671,23 @@ class DomManipulation{
 
         buttonsContainer.setAttribute("class", "buttons");
         listIcon.setAttribute("class", "list");
-        listIcon.setAttribute("class", "close");
+        closeIcon.setAttribute("class", "close");
 
         headerContainer.appendChild(buttonsContainer);
         buttonsContainer.appendChild(listIcon);
         buttonsContainer.appendChild(closeIcon);
+
+        listIcon.addEventListener('click', ()=>{
+            listIcon.setAttribute("id", "hide");
+            closeIcon.setAttribute("id", "show");
+            this.myAside.classList.toggle("showAside");
+        })
+
+        closeIcon.addEventListener('click', ()=>{
+            closeIcon.setAttribute("id", "hide");
+            listIcon.setAttribute("id", "show");
+            this.myAside.classList.toggle("showAside");
+        })
     }
 
 }

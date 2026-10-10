@@ -650,14 +650,6 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 85%;
   }
 
-  .header .buttons {
-    display: flex;
-  }
-
-  .header .buttons img:last-child {
-    display: none;
-  }
-
   body {
     grid-template-columns: 1fr;
     grid-template-rows: 80px auto;
@@ -666,12 +658,38 @@ h1, h2, h3, h4, h5, h6 {
     "main";
   }
 
+  .header .buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .header .buttons .close {
+    display: none;
+  }
+
+  .header .buttons #hide {
+    display: none;
+  }
+
+  .header .buttons #show {
+    display: block;
+  }
+
   .aside {
-    width: 50%;
+    width: 70%;
     grid-area: none;
     position: absolute;
     left: -100%;
     transition: ease-in-out .3s;
+  }
+
+  .aside.showAside {
+    left: 0;
+  }
+
+  .aside.showAside::backdrop {
+    background-color: rgba(0, 0, 0, 0.9);
   }
 
   .main .all-tasks {
@@ -692,6 +710,15 @@ h1, h2, h3, h4, h5, h6 {
     height: calc(var(--spacing) * 10);
     padding: calc(var(--spacing) * 2);
     cursor: pointer;
+  }
+}
+
+@media (max-width:400px) {
+  html {
+    font-size: 75%;
+  }
+  .aside {
+    width: 100%;
   }
 }
 
